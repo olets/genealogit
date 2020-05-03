@@ -20,14 +20,17 @@ const individuals = parsedInput.individuals.map(individual => {
   }
 })
 
-individuals.forEach(individual => {
-  console.log(individual.name)
+execSync(`bash ${binPath}/clean`)
 
-  const stdout = execSync(`bash ${binPath}/create "${individual.name}" ${individual.id}`);
-  const child = spawnSync(`bash ${binPath}/create "${individual.name}" ${individual.id}`, );
-  console.error({'error': child.error});
-  // console.log({'stdout ': child.stdout});
-  // console.error({'stderr ': child.stderr});
-  // console.log('-----------------------------')
+syncExec = command => {
+  const stdout = execSync(command)
+  const child = spawnSync(command,)
+  // console.error({'error': child.error})
+  // console.log({'stdout ': child.stdout})
+  // console.error({'stderr ': child.stderr})
+}
+
+individuals.forEach(individual => {
+  syncExec(`bash ${binPath}/create "${individual.name}" ${individual.id}`)
 })
 

@@ -11,17 +11,7 @@ ref=$(git rev-parse --abbrev-ref HEAD)
 if [[ $ref == 'HEAD' ]]; then
 	ref=$(git rev-parse HEAD)
 fi
-# echo $name
-# echo $id
-# echo
-echo checking for branch "$id"
-if [[ -n $(git branch | grep -w "$id") ]]; then
-	git checkout "$id"
-	git commit --no-gpg-sign --allow-empty -m "$name"
-	git replace @~ @
-else
-	git checkout --orphan="$id"
-	git commit --no-gpg-sign --allow-empty -m "$name"
-fi
-git checkout $ref
-# echo
+
+git checkout --quiet --orphan="genealogit/$id"
+git commit --no-gpg-sign --allow-empty -m "$name"
+git checkout --quiet $ref
