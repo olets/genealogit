@@ -20,7 +20,8 @@ const individuals = parsedInput.individuals.map(individual => {
   }
 })
 
-execSync(`bash ${binPath}/clean`)
+// Delete all existing genealogit branches
+execSync(`bash ${binPath}/clean ${prefix}`)
 
 syncExec = command => {
   const stdout = execSync(command)
