@@ -7,16 +7,21 @@ fi
 
 name="$1"
 id="$2"
+ref=$(git rev-parse --abbrev-ref HEAD)
+if [[ $ref == 'HEAD' ]]; then
+	ref=$(git rev-parse HEAD)
+fi
 # echo $name
 # echo $id
 # echo
-
+echo checking for branch "$id"
 if [[ -n $(git branch | grep -w "$id") ]]; then
-	echo git checkout "$id"
-	echo git commit --no-gpg-sign --allow-empty -m "$name"
-	echo git replace @~ @
+	git checkout "$id"
+	git commit --no-gpg-sign --allow-empty -m "$name"
+	git replace @~ @
 else
-	echo git checkout --orphan="$id"
-	echo git commit --no-gpg-sign --allow-empty -m "$name"
+	git checkout --orphan="$id"
+	git commit --no-gpg-sign --allow-empty -m "$name"
 fi
+git checkout $ref
 # echo

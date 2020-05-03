@@ -1,4 +1,7 @@
 const { exec } = require('child_process')
+
+const { execSync } = require('child_process');
+const { spawnSync} = require('child_process');
 const fs = require('fs')
 var path = require('path')
 
@@ -19,13 +22,12 @@ const individuals = parsedInput.individuals.map(individual => {
 
 individuals.forEach(individual => {
   console.log(individual.name)
-  exec(`bash ${binPath}/create "${individual.name}" ${individual.id}`, (err, stdout, stderr) => {
-    if (err) {
-      console.log({err: err})
-    } else {
-     console.log(`stdout: ${stdout}`);
-     console.log(`stderr: ${stderr}`);
-    }
-  })
-  console.log('-----------------------------')
+
+  const stdout = execSync(`bash ${binPath}/create "${individual.name}" ${individual.id}`);
+  const child = spawnSync(`bash ${binPath}/create "${individual.name}" ${individual.id}`, );
+  console.error({'error': child.error});
+  // console.log({'stdout ': child.stdout});
+  // console.error({'stderr ': child.stderr});
+  // console.log('-----------------------------')
 })
+
