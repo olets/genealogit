@@ -1,6 +1,8 @@
 const { exec } = require('child_process')
 const fs = require('fs')
+var path = require('path')
 
+const binPath = path.join(__dirname, 'bin')
 const gedcomJs = new require('gedcom-js').default
 const input = fs.readFileSync("demo.ged", "utf8")
 const parsedInput = gedcomJs.parse(input)
@@ -15,4 +17,15 @@ const individuals = parsedInput.individuals.map(individual => {
   }
 })
 
-console.log(individuals)
+individuals.forEach(individual => {
+  console.log(individual.name)
+  exec(`bash ${binPath}/create "${individual.name}" ${individual.id}`, (err, stdout, stderr) => {
+    if (err) {
+      console.log({err: err})
+    } else {
+     console.log(`stdout: ${stdout}`);
+     console.log(`stderr: ${stderr}`);
+    }
+  })
+  console.log('-----------------------------')
+})

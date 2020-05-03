@@ -1,0 +1,22 @@
+# !/bin/bash
+
+if [[ $# < 2 ]]; then
+	printf "Every record must have at least ID and Name\\n"
+	return
+fi
+
+name="$1"
+id="$2"
+# echo $name
+# echo $id
+# echo
+
+if [[ -n $(git branch | grep -w "$id") ]]; then
+	echo git checkout "$id"
+	echo git commit --no-gpg-sign --allow-empty -m "$name"
+	echo git replace @~ @
+else
+	echo git checkout --orphan="$id"
+	echo git commit --no-gpg-sign --allow-empty -m "$name"
+fi
+# echo
