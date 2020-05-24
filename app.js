@@ -4,15 +4,14 @@ const gedcomJs = new require('gedcom-js').default
 const path = require('path')
 const yaml = require('js-yaml')
 
-const BIN_PATH = path.join(__dirname, 'bin')
-const FALLBACK_NAME = '(name unknown)'
-const GEDCOM_REGEX = /\.ged$/
-const PREFIX = 'genealogit/'
+const GENEALOGIT_BIN_PATH = path.join(__dirname, 'bin')
+const GENEALOGIT_FALLBACK_NAME = '(name unknown)'
+const GENEALOGIT_GEDCOM_REGEX = /\.ged$/
 
 class Genealogit {
   constructor() {
     this.files.forEach(file => {
-      this.prefix=`${PREFIX}${path.parse(file).name}/`
+      this.prefix=`genealogit/${path.parse(file).name}/`
 
       const individuals = gedcomJs.parse(fs.readFileSync(file, "utf8")).individuals
 
@@ -34,7 +33,7 @@ class Genealogit {
     let files = []
 
     fs.readdirSync(__dirname).forEach(child => {
-      const isGed = child.match(GEDCOM_REGEX)
+      const isGed = child.match(GENEALOGIT_GEDCOM_REGEX)
 
       if (isGed) {
         files = [...files, child]
@@ -45,7 +44,7 @@ class Genealogit {
   }
 
   individualName(individual) {
-    return Object.values(individual.names[0]).concat().join(' ') || FALLBACK_NAME
+    return Object.values(individual.names[0]).concat().join(' ') || GENEALOGIT_FALLBACK_NAME
   }
 
   syncExec(command) {
@@ -55,7 +54,7 @@ class Genealogit {
 
   // Delete all existing genealogit branches
   clean() {
-    execSync(`bash ${BIN_PATH}/clean ${this.prefix}`)
+    execSync(`bash ${GENEALOGIT_BIN_PATH}/clean ${this.prefix}`)
   }
 
   // Create an orphan branch for each individual
@@ -71,7 +70,7 @@ class Genealogit {
     const name = this.individualName(individual)
 
     console.log(`Adding ${name}`)
-    this.syncExec(`bash ${BIN_PATH}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    this.syncExec(`bash ${GENEALOGIT_BIN_PATH}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
   }
 
   connectToParents(individual) {
@@ -91,12 +90,12 @@ class Genealogit {
       if (p.fname || p.lname) {
         return [p.fname || null, p.lname || null].join(' ')
       } else {
-        return FALLBACK_NAME
+        return GENEALOGIT_FALLBACK_NAME
       }
     }).join(', ')}`
 
     console.log(log)
-    this.syncExec(`bash ${BIN_PATH}/connect ${individualBranch} ${parentBranches}`)
+    this.syncExec(`bash ${GENEALOGIT_BIN_PATH}/connect ${individualBranch} ${parentBranches}`)
   }
 }
 
