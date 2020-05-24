@@ -7,6 +7,7 @@ const yaml = require('js-yaml')
 const binPath = path.join(__dirname, 'bin')
 const gedRegex = /\.ged$/
 const globalPrefix = 'genealogit/'
+let prefix = ''
 
 function files() {
   let gedFiles = []
@@ -26,7 +27,7 @@ files().forEach(file => {
   const fileContents = fs.readFileSync(file, "utf8")
   const ged = gedcomJs.parse(fileContents)
   const individuals = getIndividuals(ged)
-  const prefix=`${globalPrefix}${path.parse(file).name}/`
+  prefix=`${globalPrefix}${path.parse(file).name}/`
 
   let underline = ''
   for (i = 0; i < file.length; i++) {
@@ -35,9 +36,9 @@ files().forEach(file => {
 
   console.log(`Building ${file}`)
   console.log(`---------${underline}`)
-  clean(prefix)
-  create(individuals, prefix)
-  connect(individuals, prefix)
+  clean()
+  individuals.forEach(individual => create(individual))
+  individuals.forEach(individual => connectToParents(individual))
   console.log()
 })
 
@@ -68,37 +69,39 @@ function syncExec(command) {
 }
 
 // Delete all existing genealogit branches
-function clean(prefix) {
+function clean() {
   execSync(`bash ${binPath}/clean ${prefix}`)
 }
 
 // Create an orphan branch for each individual
-function create(individuals, prefix) {
-  individuals.forEach(individual => {
-    const commitMessage = yaml.safeDump(individual, {
-      sortKeys: true,
-    })
+function create(individual) {
+  if (!individual.name || !individual.id) {
+    return
+  }
 
-    console.log(`Adding ${individual.name}`)
-    syncExec(`bash ${binPath}/create "${individual.name}" ${individual.id} ${prefix} "${commitMessage}"`)
+  const commitMessage = yaml.safeDump(individual, {
+    sortKeys: true,
   })
+
+  console.log(`Adding ${individual.name}`)
+  syncExec(`bash ${binPath}/create "${individual.name}" ${individual.id} ${prefix} "${commitMessage}"`)
 }
 
-// Connect children to their parents
-function connect(individuals, prefix) {
-  const individualsWithParents = individuals.filter(individual => individual.parents.length)
-  individualsWithParents.forEach(individual => {
-    const individualBranch = `${prefix}${individual.id}`
-    const parents = individual.parents
-    const parentBranches = parents.map(p => `${prefix}${p.id}`).join(' ')
+function connectToParents(individual) {
+  if (!individual.parents.length) {
+    return
+  }
 
-    let log = `Connecting ${individual.name} to parent`
-    if (parents.length > 1) {
-      log += 's'
-    }
-    log += ` ${parents.map(p => p.name).join(', ')}`
+  const individualBranch = `${prefix}${individual.id}`
+  const parents = individual.parents
+  const parentBranches = parents.map(p => `${prefix}${p.id}`).join(' ')
 
-    console.log(log)
-    syncExec(`bash ${binPath}/connect ${individualBranch} ${parentBranches}`)
-  })
+  let log = `Connecting ${individual.name} to parent`
+  if (parents.length > 1) {
+    log += 's'
+  }
+  log += ` ${parents.map(p => p.name).join(', ')}`
+
+  console.log(log)
+  syncExec(`bash ${binPath}/connect ${individualBranch} ${parentBranches}`)
 }
