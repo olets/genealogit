@@ -5,6 +5,7 @@ const path = require('path')
 const yaml = require('js-yaml')
 
 const BIN_PATH = path.join(__dirname, 'bin')
+const FALLBACK_NAME = '(name unknown)'
 const GEDCOM_REGEX = /\.ged$/
 const PREFIX = 'genealogit/'
 
@@ -44,7 +45,7 @@ class Genealogit {
   }
 
   individualName(individual) {
-    return Object.values(individual.names[0]).concat().join(' ')
+    return Object.values(individual.names[0]).concat().join(' ') || FALLBACK_NAME
   }
 
   syncExec(command) {
@@ -59,7 +60,7 @@ class Genealogit {
 
   // Create an orphan branch for each individual
   create(individual) {
-    if (!individual.names || !individual.id) {
+    if (!individual.id) {
       return
     }
 
@@ -86,7 +87,13 @@ class Genealogit {
     if (parents.length > 1) {
       log += 's'
     }
-    log += ` ${parents.map(p => `${p.fname} ${p.lname}`).join(', ')}`
+    log += ` ${parents.map(p => {
+      if (p.fname || p.lname) {
+        return [p.fname || null, p.lname || null].join(' ')
+      } else {
+        return FALLBACK_NAME
+      }
+    }).join(', ')}`
 
     console.log(log)
     this.syncExec(`bash ${BIN_PATH}/connect ${individualBranch} ${parentBranches}`)
