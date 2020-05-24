@@ -11,10 +11,10 @@ const PREFIX = 'genealogit/'
 class Genealogit {
   constructor() {
     this.files.forEach(file => {
-      this.data = gedcomJs.parse(fs.readFileSync(file, "utf8"))
       this.prefix=`${PREFIX}${path.parse(file).name}/`
 
-      const individuals = this.individuals
+      const individuals = gedcomJs.parse(fs.readFileSync(file, "utf8")).individuals
+
       let underline = ''
       for (let i = 0; i < file.length; i++) {
         underline += '-'
@@ -30,38 +30,21 @@ class Genealogit {
   }
 
   get files() {
-    let gedFiles = []
+    let files = []
 
     fs.readdirSync(__dirname).forEach(child => {
       const isGed = child.match(GEDCOM_REGEX)
 
       if (isGed) {
-        gedFiles = [...gedFiles, child]
+        files = [...files, child]
       }
     })
 
-    return gedFiles
+    return files
   }
 
-  get individuals() {
-    return this.data.individuals
-      .filter(individual => individual.id && individual.names)
-      .map(individual => {
-        const parents = individual.parents
-          .filter(parent => parent.id)
-          .map(parent => {
-            return {
-              id: parent.id,
-              name: `${parent.fname} ${parent.lname}`
-            }
-          })
-
-        return {
-          ...individual,
-          name: Object.values(individual.names[0]).concat().join(' '),
-          parents: parents,
-        }
-      })
+  individualName(individual) {
+    return Object.values(individual.names[0]).concat().join(' ')
   }
 
   syncExec(command) {
@@ -76,7 +59,7 @@ class Genealogit {
 
   // Create an orphan branch for each individual
   create(individual) {
-    if (!individual.name || !individual.id) {
+    if (!individual.names || !individual.id) {
       return
     }
 
@@ -84,24 +67,26 @@ class Genealogit {
       sortKeys: true,
     })
 
-    console.log(`Adding ${individual.name}`)
-    this.syncExec(`bash ${BIN_PATH}/create "${individual.name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    const name = this.individualName(individual)
+
+    console.log(`Adding ${name}`)
+    this.syncExec(`bash ${BIN_PATH}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
   }
 
   connectToParents(individual) {
-    if (!individual.parents.length) {
+    const individualBranch = `${this.prefix}${individual.id}`
+    const parents = individual.parents.filter(p => p.id) || null
+    const parentBranches = parents.map(p => `${this.prefix}${p.id}`).join(' ')
+
+    if (!parentBranches) {
       return
     }
 
-    const individualBranch = `${this.prefix}${individual.id}`
-    const parents = individual.parents
-    const parentBranches = parents.map(p => `${this.prefix}${p.id}`).join(' ')
-
-    let log = `Connecting ${individual.name} to parent`
+    let log = `Connecting ${this.individualName(individual)} to parent`
     if (parents.length > 1) {
       log += 's'
     }
-    log += ` ${parents.map(p => p.name).join(', ')}`
+    log += ` ${parents.map(p => `${p.fname} ${p.lname}`).join(', ')}`
 
     console.log(log)
     this.syncExec(`bash ${BIN_PATH}/connect ${individualBranch} ${parentBranches}`)
