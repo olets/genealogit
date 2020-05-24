@@ -1,9 +1,10 @@
 const { execSync, spawnSync } = require('child_process')
 const fs = require('fs')
+const gedcomJs = new require('gedcom-js').default
 const path = require('path')
+const yaml = require('js-yaml')
 
 const binPath = path.join(__dirname, 'bin')
-const gedcomJs = new require('gedcom-js').default
 const gedRegex = /\.ged$/
 const globalPrefix = 'genealogit/'
 
@@ -54,7 +55,7 @@ function getIndividuals(ged) {
         })
 
       return {
-        id: individual.id,
+        ...individual,
         name: Object.values(individual.names[0]).concat().join(' '),
         parents: parents,
       }
@@ -74,8 +75,12 @@ function clean(prefix) {
 // Create an orphan branch for each individual
 function create(individuals, prefix) {
   individuals.forEach(individual => {
+    const commitMessage = yaml.safeDump(individual, {
+      sortKeys: true,
+    })
+
     console.log(`Adding ${individual.name}`)
-    syncExec(`bash ${binPath}/create "${individual.name}" ${individual.id} ${prefix}`)
+    syncExec(`bash ${binPath}/create "${individual.name}" ${individual.id} ${prefix} "${commitMessage}"`)
   })
 }
 

@@ -1,15 +1,15 @@
 {
   "name": "genealogit",
   "version": "0.1.0",
-  "description": "",
+  "author": "Henry Bley-Vroman",
+  "dependencies": {
+    "gedcom-js": "^0.3.0",
+    "js-yaml": "^3.14.0"
+  },
+  "keywords": [],
+  "license": "MIT",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Henry Bley-Vroman",
-  "license": "MIT",
-  "dependencies": {
-    "gedcom-js": "^0.3.0"
   }
 }

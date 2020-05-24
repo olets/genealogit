@@ -2,17 +2,20 @@
 
 if [[ $# < 2 ]]; then
 	printf "Every record must have at least ID and Name\\n"
-	return
+	exit
 fi
 
 name="$1"
 id="$2"
 prefix="$3"
+commit_message="$4"
 ref=$(git rev-parse --abbrev-ref HEAD)
 if [[ $ref == 'HEAD' ]]; then
 	ref=$(git rev-parse HEAD)
 fi
 
 git checkout --quiet --orphan="$prefix$id"
-git commit --no-gpg-sign --allow-empty -m "$name"
+git commit --no-gpg-sign --allow-empty -m "$name
+
+$commit_message"
 git checkout --quiet $ref
