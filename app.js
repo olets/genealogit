@@ -27,21 +27,38 @@ files().forEach(file => {
   const individuals = getIndividuals(ged)
   const prefix=`${globalPrefix}${path.parse(file).name}/`
 
+  let underline = ''
+  for (i = 0; i < file.length; i++) {
+    underline += '-'
+  }
+
+  console.log(`Building ${file}`)
+  console.log(`---------${underline}`)
   clean(prefix)
   create(individuals, prefix)
   connect(individuals, prefix)
+  console.log()
 })
 
 function getIndividuals(ged) {
-  return ged.individuals.map(individual => {
-    const name = Object.values(individual.names[0]).concat().join(' ')
-    const parentIds = individual.parents.map(parent => parent.id).filter(id => id)
-    return {
-      name: name,
-      id: individual.id,
-      parentIds: [...parentIds]
-    }
-  })
+  return ged.individuals
+    .filter(individual => individual.id && individual.names)
+    .map(individual => {
+      const parents = individual.parents
+        .filter(parent => parent.id)
+        .map(parent => {
+          return {
+            id: parent.id,
+            name: `${parent.fname} ${parent.lname}`
+          }
+        })
+
+      return {
+        id: individual.id,
+        name: Object.values(individual.names[0]).concat().join(' '),
+        parents: parents,
+      }
+    })
 }
 
 function syncExec(command) {
@@ -57,17 +74,26 @@ function clean(prefix) {
 // Create an orphan branch for each individual
 function create(individuals, prefix) {
   individuals.forEach(individual => {
+    console.log(`Adding ${individual.name}`)
     syncExec(`bash ${binPath}/create "${individual.name}" ${individual.id} ${prefix}`)
   })
 }
 
 // Connect children to their parents
 function connect(individuals, prefix) {
-  const individualsWithParents = individuals.filter(individual => individual.parentIds.length)
-
+  const individualsWithParents = individuals.filter(individual => individual.parents.length)
   individualsWithParents.forEach(individual => {
-    individualBranch = `${prefix}${individual.id}`
-    parentBranches = individual.parentIds.map(id => `${prefix}${id}`).join(' ')
+    const individualBranch = `${prefix}${individual.id}`
+    const parents = individual.parents
+    const parentBranches = parents.map(p => `${prefix}${p.id}`).join(' ')
+
+    let log = `Connecting ${individual.name} to parent`
+    if (parents.length > 1) {
+      log += 's'
+    }
+    log += ` ${parents.map(p => p.name).join(', ')}`
+
+    console.log(log)
     syncExec(`bash ${binPath}/connect ${individualBranch} ${parentBranches}`)
   })
 }
