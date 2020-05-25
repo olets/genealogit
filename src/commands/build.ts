@@ -1,5 +1,5 @@
 import {Command} from '@oclif/command'
-import { execSync, spawnSync } from 'child_process'
+import {execSync, spawnSync} from 'child_process'
 import * as fs from 'fs'
 import gedcom from 'gedcom-js'
 import * as path from 'path'
@@ -15,9 +15,9 @@ export default class Build extends Command {
     this.binDir = this.path('/bin')
 
     this.files.forEach(file => {
-      this.prefix=`genealogit/${path.parse(file).name}/`
+      this.prefix = `genealogit/${path.parse(file).name}/`
 
-      const individuals = gedcom.parse(fs.readFileSync(file, "utf8")).individuals
+      const individuals = gedcom.parse(fs.readFileSync(file, 'utf8')).individuals
 
       let underline = ''
       for (let i = 0; i < file.length; i++) {
@@ -55,11 +55,6 @@ export default class Build extends Command {
     return Object.values(individual.names[0]).concat().join(' ') || GENEALOGIT_FALLBACK_NAME
   }
 
-  syncExec(command) {
-    const stdout = execSync(command)
-    const child = spawnSync(command)
-  }
-
   // Delete all existing genealogit branches
   clean() {
     execSync(`bash ${this.binDir}/clean ${this.prefix}`)
@@ -78,7 +73,8 @@ export default class Build extends Command {
     const name = this.individualName(individual)
 
     this.log(`Adding ${name}`)
-    this.syncExec(`bash ${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    execSync(`bash ${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    spawnSync(`bash ${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
   }
 
   connectToParents(individual) {
@@ -97,12 +93,13 @@ export default class Build extends Command {
     log += ` ${parents.map(p => {
       if (p.fname || p.lname) {
         return [p.fname || null, p.lname || null].join(' ')
-      } else {
-        return GENEALOGIT_FALLBACK_NAME
       }
+
+      return GENEALOGIT_FALLBACK_NAME
     }).join(', ')}`
 
     this.log(log)
-    this.syncExec(`bash ${this.binDir}/connect ${individualBranch} ${parentBranches}`)
+    execSync(`bash ${this.binDir}/connect ${individualBranch} ${parentBranches}`)
+    spawnSync(`bash ${this.binDir}/connect ${individualBranch} ${parentBranches}`)
   }
 }
