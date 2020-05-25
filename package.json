@@ -12,6 +12,7 @@
     "@oclif/plugin-help": "^3",
     "gedcom-js": "^0.3.0",
     "js-yaml": "^3.14.0",
+    "oclif": "^1.16.1",
     "tslib": "^1"
   },
   "devDependencies": {

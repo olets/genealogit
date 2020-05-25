@@ -25,22 +25,20 @@ USAGE
 <!-- usagestop -->
 ## Commands
 <!-- commands -->
-* [`genealogit build`](#genealogit-genealogit-file)
+* [`genealogit build [FILE]`](#genealogit-build-file)
 * [`genealogit help [COMMAND]`](#genealogit-help-command)
+* [`genealogit visualize [FILE]`](#genealogit-visualize-file)
 
-### `genealogit build`
+### `genealogit build [FILE]`
 
 Build a family tree in Git from a GEDCOM file
 
 ```
 USAGE
-  $ genealogit build
-
-ARGUMENTS
-  FILE  file to build
+  $ genealogit build [FILE]
 ```
 
-_See code: [src/commands/genealogit.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/genealogit.ts)_
+_See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/build.ts)_
 
 ### `genealogit help [COMMAND]`
 
@@ -58,6 +56,19 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
+
+### `genealogit visualize [FILE]`
+
+Show the Git log graph for the specified file
+
+```
+USAGE
+  $ genealogit visualize <FILE> [<FIRST INDIVIDUAL> <SECOND INDIVIDUAL>]
+```
+
+Recommend piping to `less -FXr`
+
+_See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/visualize.ts)_
 <!-- commandsstop -->
 ## Contributing
 
