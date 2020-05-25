@@ -9,28 +9,30 @@ const GENEALOGIT_FALLBACK_NAME = '(name unknown)'
 const GENEALOGIT_GEDCOM_REGEX = /\.ged$/
 
 export default class Build extends Command {
+  static args = [{name: 'file'}]
+
   static description = 'Build a family tree in Git from a GEDCOM file'
 
   async run() {
     this.binDir = this.path('/bin')
 
-    this.files.forEach(file => {
-      this.prefix = `genealogit/${path.parse(file).name}/`
+    const {args} = this.parse(Build)
 
-      const individuals = gedcom.parse(fs.readFileSync(file, 'utf8')).individuals
+    if (args.file) {
+      this.build(this.path(args.file))
+    } else {
+      this.files.forEach(file => {
+        let underline = ''
+        for (let i = 0; i < file.length; i++) {
+          underline += '-'
+        }
 
-      let underline = ''
-      for (let i = 0; i < file.length; i++) {
-        underline += '-'
-      }
-
-      this.log(`Building ${file}`)
-      this.log(`---------${underline}`)
-      this.clean()
-      individuals.forEach(individual => this.create(individual))
-      individuals.forEach(individual => this.connectToParents(individual))
-      this.log()
-    })
+        this.log(`Building ${file}`)
+        this.log(`---------${underline}`)
+        this.build(file)
+        this.log()
+      })
+    }
   }
 
   get files() {
@@ -45,6 +47,14 @@ export default class Build extends Command {
     })
 
     return files
+  }
+
+  build(file) {
+    const individuals = gedcom.parse(fs.readFileSync(file, 'utf8')).individuals
+    this.prefix = `genealogit/${path.parse(file).name}/`
+    this.clean()
+    individuals.forEach(individual => this.create(individual))
+    individuals.forEach(individual => this.connectToParents(individual))
   }
 
   path(rootRelativePath = '') {

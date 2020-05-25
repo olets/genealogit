@@ -35,6 +35,9 @@ Build a family tree in Git from a GEDCOM file
 ```
 USAGE
   $ genealogit build
+
+ARGUMENTS
+  FILE  file to build
 ```
 
 _See code: [src/commands/genealogit.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/genealogit.ts)_
