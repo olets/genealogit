@@ -2,8 +2,6 @@
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/genealogit.svg)](https://npmjs.org/package/genealogit)
-[![Downloads/week](https://img.shields.io/npm/dw/genealogit.svg)](https://npmjs.org/package/genealogit)
-[![License](https://img.shields.io/npm/l/genealogit.svg)](https://github.com/olets/genealogit/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -27,7 +25,19 @@ USAGE
 <!-- usagestop -->
 ## Commands
 <!-- commands -->
+* [`genealogit build`](#genealogit-genealogit-file)
 * [`genealogit help [COMMAND]`](#genealogit-help-command)
+
+### `genealogit build`
+
+Build a family tree in Git from a GEDCOM file
+
+```
+USAGE
+  $ genealogit build
+```
+
+_See code: [src/commands/genealogit.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/genealogit.ts)_
 
 ### `genealogit help [COMMAND]`
 
