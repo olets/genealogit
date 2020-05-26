@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 prefix=$1
 elder=$2
 younger=$3

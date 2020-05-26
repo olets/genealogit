@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if (( $# < 2 )); then
 	printf "Every record must have at least ID and Name\\n"
