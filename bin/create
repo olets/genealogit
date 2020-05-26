@@ -15,7 +15,8 @@ if [[ $ref == 'HEAD' ]]; then
 fi
 
 git checkout --quiet --orphan="$prefix$id"
-git commit --no-gpg-sign --allow-empty --author="Genealogit <genealogit@olets.dev>" -m "$name
+git commit --no-gpg-sign --allow-empty --author="Genealogit <genealogit@olets.dev>" -m "$name ($id)
 
 $commit_message"
+
 git checkout --quiet "$ref"
