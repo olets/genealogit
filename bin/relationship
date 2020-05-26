@@ -1,0 +1,145 @@
+#!/bin/bash
+
+
+file="$1"
+ind1="$2"
+ind2="$3"
+
+prefix="genealogit/$file/"
+ind1_branch="$prefix$ind1"
+ind2_branch="$prefix$ind2"
+
+max_commit_count() {
+  {
+    function commit_count() {
+      git rev-list --count --merges "$1".."$2"
+
+      # to get `windsor I5 I6` to work… but breaks others
+      # i=0
+      # commit1=$(git rev-parse "$1")
+      # commit2=$(git rev-parse "$2")
+      # commits=$(git --no-replace-objects rev-list "$1".."$2")
+      # for commit in ${commits[@]}; do
+      #   [[ "$commit" != "$commit1" && "$commit" != "$commit2" ]] && i=$(( i + 1))
+      # done
+      # echo $i
+    }
+
+    forward=$(commit_count "$1" "$2")
+    reverse=$(commit_count "$2" "$1")
+
+    echo $(( forward > reverse ? forward : reverse ))
+  }
+}
+
+common_ancestor=$(git merge-base "$ind1_branch" "$ind2_branch")
+
+if [[ -z "$common_ancestor" ]]; then
+  echo "$1 and $2 have no common ancestor" >&2
+  exit
+fi
+
+distance1=$(max_commit_count "$ind1_branch" "$common_ancestor")
+distance2=$(max_commit_count "$ind2_branch" "$common_ancestor")
+
+if (( distance1 > distance2 )); then
+  shorter="$ind2"
+  shorter_distance=$distance2
+  longer="$ind1"
+  longer_distance=$distance1
+else
+  shorter="$ind1"
+  shorter_distance=$distance1
+  longer="$ind2"
+  longer_distance=$distance2
+fi
+
+# debugging
+# echo "distance1 $distance1"
+# echo "distance2 $distance2"
+# echo "common_ancestor $common_ancestor"
+# echo "shorter $shorter"
+# echo "shorter_distance $shorter_distance"
+# echo "longer $longer"
+# echo "longer_distance $longer_distance"
+
+if [[ $longer_distance == $shorter_distance && $longer_distance == 1 ]]; then
+  echo "$shorter is the sibling of $longer"
+  exit
+fi
+
+if [[ $shorter_distance == 0 ]]; then
+  if [[ $longer_distance == 1 ]]; then
+    echo "$shorter is $longer's parent"
+    exit
+  fi
+
+  great_count=$(( longer_distance - 3 ))
+  result="$shorter is $longer's "
+
+  i=0
+  while (( i < great_count )); do
+    result+="great-"
+    i=$(( i + 1 ))
+  done
+
+  result+="grandparent"
+  echo "$result"
+
+  if ! (( great_count > 0 )); then
+    echo
+    echo "Known issue: if $shorter has no parents in the tree and $longer has children in the tree, $shorter may in fact be $longer's parent"
+  fi
+  exit
+fi
+
+if [[ $shorter_distance == 1 ]]; then
+  great_count=$(( longer_distance - 2 ))
+  result="$shorter is $longer's "
+
+  i=0
+  while (( i < great_count )); do
+    result+="great-"
+    i=$(( i + 1 ))
+    echo $i
+  done
+
+  result+="aunt/uncle"
+  echo "$result"
+  exit
+fi
+
+cousin_degree=$(( shorter_distance - 1 ))
+cousin_removal=$(( longer_distance - shorter_distance ))
+result="$shorter and $longer are "
+
+if (( cousin_degree > 1 )); then
+  result+=$cousin_degree
+
+  cousin_degree_last_digit=${cousin_degree: -1}
+  if (( cousin_degree_last_digit == 1 )); then
+    result+="st"
+  elif (( cousin_degree_last_digit == 2 )); then
+    result+="nd"
+  elif (( cousin_degree_last_digit == 3 )); then
+    result+="rd"
+  else
+    result+="th"
+  fi
+
+  result+=" "
+fi
+
+result+="cousins"
+
+if (( cousin_removal )); then
+  if (( cousin_removal == 1 )); then
+    result+=", once removed"
+  elif (( cousin_removal == 1 )); then
+    result+=", twice removed"
+  else
+    result+=", $cousin_removal times removed"
+  fi
+fi
+
+echo "$result"

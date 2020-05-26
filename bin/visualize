@@ -7,3 +7,4 @@ if [[ $# > 2 ]]; then
 else
   git log --color=always --graph --pretty=%s --branches="$prefix"
 fi
+

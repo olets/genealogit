@@ -27,7 +27,8 @@ USAGE
 <!-- commands -->
 * [`genealogit build [FILE]`](#genealogit-build-file)
 * [`genealogit help [COMMAND]`](#genealogit-help-command)
-* [`genealogit visualize [FILE]`](#genealogit-visualize-file)
+* [`genealogit relationship [FILE]`](#genealogit-relationship-file)
+* [`genealogit visualize [FILE] [ELDER] [YOUNGER]`](#genealogit-visualize-file-elder-younger)
 
 ### `genealogit build [FILE]`
 
@@ -57,16 +58,30 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
 
-### `genealogit visualize [FILE]`
+### `genealogit relationship [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ genealogit relationship [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/relationship.ts)_
+
+### `genealogit visualize [FILE] [ELDER] [YOUNGER]`
 
 Show the Git log graph for the specified file
 
 ```
 USAGE
-  $ genealogit visualize <FILE> [<FIRST INDIVIDUAL> <SECOND INDIVIDUAL>]
+  $ genealogit visualize [FILE] [ELDER] [YOUNGER]
 ```
-
-Recommend piping to `less -FXr`
 
 _See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/visualize.ts)_
 <!-- commandsstop -->
