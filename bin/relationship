@@ -63,7 +63,7 @@ fi
 # echo "longer $longer"
 # echo "longer_distance $longer_distance"
 
-if [[ $longer_distance == $shorter_distance && $longer_distance == 1 ]]; then
+if [[ $longer_distance == "$shorter_distance" && $longer_distance == 1 ]]; then
   echo "$shorter is the sibling of $longer"
   exit
 fi

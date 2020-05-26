@@ -1,6 +1,6 @@
-# !/bin/bash
+#!/bin/bash
 
-if [[ $# < 2 ]]; then
+if (( $# < 2 )); then
 	printf "Every record must have at least ID and Name\\n"
 	exit
 fi
@@ -18,4 +18,4 @@ git checkout --quiet --orphan="$prefix$id"
 git commit --no-gpg-sign --allow-empty --author="Genealogit <genealogit@olets.dev>" -m "$name
 
 $commit_message"
-git checkout --quiet $ref
+git checkout --quiet "$ref"

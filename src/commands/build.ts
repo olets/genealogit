@@ -83,8 +83,8 @@ export default class Build extends Command {
     const name = this.individualName(individual)
 
     this.log(`Adding ${name}`)
-    execSync(`bash ${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
-    spawnSync(`bash ${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    execSync(`${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    spawnSync(`${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
   }
 
   connectToParents(individual) {
@@ -109,7 +109,7 @@ export default class Build extends Command {
     }).join(', ')}`
 
     this.log(log)
-    execSync(`bash ${this.binDir}/connect ${individualBranch} ${parentBranches}`)
-    spawnSync(`bash ${this.binDir}/connect ${individualBranch} ${parentBranches}`)
+    execSync(`${this.binDir}/connect ${individualBranch} ${parentBranches}`)
+    spawnSync(`${this.binDir}/connect ${individualBranch} ${parentBranches}`)
   }
 }
