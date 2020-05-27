@@ -1,0 +1,60 @@
+# !/bin/bash
+
+create() {
+	if [[ $# < 2 ]]; then
+		printf "Every record must have at least ID and Name\\n"
+		return
+	fi
+
+	local name="$1"
+	local id="$2"
+
+	if [[ -n $(git branch | grep -w "$id") ]]; then
+		git checkout --quiet "$id"
+		git commit --quiet --no-gpg-sign --allow-empty -m "$name"
+		git replace @~ @
+	else
+		git checkout --quiet --orphan="$id"
+		git commit --quiet --no-gpg-sign --allow-empty -m "$name"
+	fi
+
+}
+
+connect() {
+	if [[ $# > 1 ]]; then
+		shift
+		git replace --graft $* &>/dev/null
+	fi
+}
+
+typeset -a people=(
+	# Name Id Parent1Id Parent2Id
+
+	"H 1 2 3"
+	"S 2 6 7"
+	"R 3 4 5"
+	"L 4"
+	"W 5"
+	"E 6"
+	"E 7"
+	"M 8 6 7"
+	"M 9 4 5"
+	"M 10 4 5"
+	"K 11"
+	"Z 12 8 11"
+	"A 13 8 16"
+	"J 14 17 18"
+	"R 15 13 14"
+	"M 16"
+	"P 17"
+	"D 18"
+)
+
+for person in "${people[@]}"; do
+	# echo "$person\n"
+	create $person
+done
+
+for person in "${people[@]}"; do
+	connect $person
+done
