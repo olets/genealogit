@@ -29,7 +29,7 @@ USAGE
 * [`genealogit build [FILE]`](#genealogit-build-file)
 * [`genealogit help [COMMAND]`](#genealogit-help-command)
 * [`genealogit relationship [FILE] [IND1] [IND2]`](#genealogit-relationship-file-ind1-ind2)
-* [`genealogit visualize [FILE] [ELDER] [YOUNGER]`](#genealogit-visualize-file-elder-younger)
+* [`genealogit visualize [FILE]`](#genealogit-visualize-file)
 
 ## `genealogit build [FILE]`
 
@@ -73,13 +73,13 @@ USAGE
 
 _See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/relationship.ts)_
 
-## `genealogit visualize [FILE] [ELDER] [YOUNGER]`
+## `genealogit visualize [FILE]`
 
 Show the Git log graph for the specified file
 
 ```
 USAGE
-  $ genealogit visualize [FILE] [ELDER] [YOUNGER]
+  $ genealogit visualize [FILE]
 ```
 
 _See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/visualize.ts)_

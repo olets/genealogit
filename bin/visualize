@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
 
-prefix=$1
-elder=$2
-younger=$3
-
-if [[ $# > 2 ]]; then
-  git log --color=always --graph --pretty=%s --branches --ancestry-path "${prefix}/${elder}".."${prefix}/${younger}"
-else
-  git log --color=always --graph --pretty=%s --branches="$prefix"
-fi
+git log --color=always --graph --pretty=%s --branches="$1"
 

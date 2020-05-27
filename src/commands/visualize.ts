@@ -7,8 +7,6 @@ export default class Visualize extends Command {
 
   static args = [
     {name: 'file'},
-    {name: 'elder'},
-    {name: 'younger'},
   ]
 
   async run() {
@@ -19,13 +17,7 @@ export default class Visualize extends Command {
       return
     }
 
-    let command = `${this.path('bin')}/visualize "genealogit/${args.file}"`
-
-    if (args.younger) {
-      command += ` "${args.elder}" "${args.younger}"`
-    }
-
-    exec(command, (err, stdout, stderr) => {
+    exec(`${this.path('bin')}/visualize "genealogit/${args.file}"`, (err, stdout, stderr) => {
       if (stdout) {
         this.log(stdout)
       } else if (stderr) {
