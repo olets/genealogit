@@ -41,7 +41,12 @@
     "/oclif.manifest.json"
   ],
   "homepage": "https://github.com/olets/genealogit",
-  "keywords": [],
+  "keywords": [
+    "git",
+    "gedcom",
+    "oclif",
+    "visualization"
+  ],
   "license": "MIT",
   "main": "app.js",
   "oclif": {
