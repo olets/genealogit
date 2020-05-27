@@ -31,15 +31,15 @@ export default class Build extends Command {
     if (args.file) {
       this.build(this.path(args.file))
     } else {
-      this.files.forEach(file => {
+      this.files.forEach(f => {
         let underline = ''
-        for (let i = 0; i < file.length; i++) {
+        for (let i = 0; i < f.length; i++) {
           underline += '-'
         }
 
-        this.log(`Building ${file}`)
+        this.log(`Building ${f}`)
         this.log(`---------${underline}`)
-        this.build(file)
+        this.build(f)
         this.log()
       })
     }
@@ -74,8 +74,8 @@ export default class Build extends Command {
     this.prefix = `genealogit/${path.parse(file).name}/`
 
     this.clean()
-    this.individuals.forEach(individual => this.create(individual))
-    this.individuals.forEach(individual => this.connectToParents(individual))
+    this.individuals.forEach(i => this.create(i))
+    this.individuals.forEach(i => this.connectToParents(i))
   }
 
   path(rootRelativePath = '') {
