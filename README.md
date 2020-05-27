@@ -1,25 +1,31 @@
 # genealogit
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/genealogit.svg)](https://npmjs.org/package/genealogit)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/olets/genealogit)
+[![NPM version](https://img.shields.io/npm/v/genealogit.svg)](https://npmjs.org/package/genealogit)
 
 <!-- toc -->
+* [Installation](#installation)
 * [Usage](#usage)
 * [Commands](#commands)
 * [Contributing](#contributing)
 * [License](#license)
 <!-- tocstop -->
+## Installation
+```shell
+$ npm install -g genealogit
+# or
+$ yarn global add genealogit
+```
 ## Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g genealogit
 $ genealogit COMMAND
 running command...
 $ genealogit (-v|--version|version)
 genealogit/1.0.0 darwin-x64 node-v12.16.3
-$ genealogit --help [COMMAND]
+$ genealogit --help <COMMAND>
 USAGE
-  $ genealogit COMMAND
+  $ genealogit <COMMAND>
 ...
 ```
 <!-- usagestop -->
