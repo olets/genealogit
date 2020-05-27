@@ -19,14 +19,15 @@ export default class Build extends Command {
 
   static description = 'Build a family tree in Git from a GEDCOM file'
 
+  binDir
+  format
+  individuals
+  prefix
+
   async run() {
-    this.binDir = this.path('/bin')
-
     const {args, flags} = this.parse(Build)
-
+    this.binDir = this.path('/bin')
     this.format = flags.format
-    this.individuals
-    this.prefix
 
     if (args.file) {
       this.build(this.path(args.file))

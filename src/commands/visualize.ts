@@ -31,7 +31,7 @@ export default class Visualize extends Command {
       } else if (stderr) {
         this.log(stderr)
       } else if (err) {
-        this.log(err)
+        this.log(JSON.stringify(err))
       }
     })
   }

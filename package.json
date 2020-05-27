@@ -10,6 +10,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@types/js-yaml": "^3.12.4",
     "gedcom-js": "^0.3.0",
     "js-yaml": "^3.14.0",
     "oclif": "^1.16.1",
