@@ -38,6 +38,9 @@ if [[ -z "$common_ancestor" ]]; then
   exit
 fi
 
+echo "Warning: Relationship is experimental"
+echo
+
 distance1=$(max_commit_count "$ind1_branch" "$common_ancestor")
 distance2=$(max_commit_count "$ind2_branch" "$common_ancestor")
 
@@ -84,11 +87,6 @@ if [[ $shorter_distance == 0 ]]; then
 
   result+="grandparent"
   echo "$result"
-
-  if ! (( great_count > 0 )); then
-    echo
-    echo "Known issue: if $shorter has no parents in the tree and $longer has children in the tree, $shorter may in fact be $longer's parent"
-  fi
   exit
 fi
 
