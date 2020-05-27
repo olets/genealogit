@@ -1,4 +1,4 @@
-import {Command} from '@oclif/command'
+import {Command, flags} from '@oclif/command'
 import {execSync, spawnSync} from 'child_process'
 import * as fs from 'fs'
 import gedcom from 'gedcom-js'
@@ -11,12 +11,22 @@ const GENEALOGIT_GEDCOM_REGEX = /\.ged$/
 export default class Build extends Command {
   static args = [{name: 'file'}]
 
+  static flags = {
+    format: flags.string({
+      default: 'gedcom',
+    }),
+  }
+
   static description = 'Build a family tree in Git from a GEDCOM file'
 
   async run() {
     this.binDir = this.path('/bin')
 
-    const {args} = this.parse(Build)
+    const {args, flags} = this.parse(Build)
+
+    this.format = flags.format
+    this.individuals
+    this.prefix
 
     if (args.file) {
       this.build(this.path(args.file))
@@ -50,11 +60,22 @@ export default class Build extends Command {
   }
 
   build(file) {
-    const individuals = gedcom.parse(fs.readFileSync(file, 'utf8')).individuals
+    let data
+
+    if (this.format === 'gedcom') {
+      data = gedcom.parse(fs.readFileSync(file, 'utf8'))
+    } else if (this.format === 'json') {
+      data = JSON.parse(fs.readFileSync(file, 'utf8'))
+    } else if (this.format === 'yaml') {
+      data = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
+    }
+
+    this.individuals = data.individuals
     this.prefix = `genealogit/${path.parse(file).name}/`
+
     this.clean()
-    individuals.forEach(individual => this.create(individual))
-    individuals.forEach(individual => this.connectToParents(individual))
+    this.individuals.forEach(individual => this.create(individual))
+    this.individuals.forEach(individual => this.connectToParents(individual))
   }
 
   path(rootRelativePath = '') {
@@ -62,7 +83,8 @@ export default class Build extends Command {
   }
 
   individualName(individual) {
-    return Object.values(individual.names[0]).concat().join(' ') || GENEALOGIT_FALLBACK_NAME
+    // console.log(individual)
+    return individual.name || Object.values(individual.names[0]).concat().join(' ') || GENEALOGIT_FALLBACK_NAME
   }
 
   // Delete all existing genealogit branches
@@ -72,7 +94,11 @@ export default class Build extends Command {
 
   // Create an orphan branch for each individual
   create(individual) {
-    if (!individual.id) {
+    const id = individual.id || null
+
+    if (!id) {
+      const name = this.individualName(individual)
+      this.log(`Cannot add ${name} because they do not have an id`)
       return
     }
 
@@ -83,30 +109,30 @@ export default class Build extends Command {
     const name = this.individualName(individual)
 
     this.log(`Adding ${name}`)
-    execSync(`${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
-    spawnSync(`${this.binDir}/create "${name}" ${individual.id} ${this.prefix} "${commitMessage}"`)
+    execSync(`${this.binDir}/create "${name}" ${id} ${this.prefix} "${commitMessage}"`)
+    spawnSync(`${this.binDir}/create "${name}" ${id} ${this.prefix} "${commitMessage}"`)
   }
 
   connectToParents(individual) {
-    const individualBranch = `${this.prefix}${individual.id}`
-    const parents = individual.parents.filter(p => p.id) || null
-    const parentBranches = parents.map(p => `${this.prefix}${p.id}`).join(' ')
+    const parents = individual.parents ? individual.parents.filter(p => p.id) : null
 
-    if (!parentBranches) {
+    if (!parents) {
       return
     }
 
-    let log = `Connecting ${this.individualName(individual)} to parent`
+    const individualBranch = `${this.prefix}${individual.id}`
+    const name = this.individualName(individual)
+    const parentBranches = parents.map(p => `${this.prefix}${p.id}`).join(' ')
+    const parentNames = parents.map(p => {
+      const parent = this.individuals.filter(i => i.id === p.id)[0]
+      return this.individualName(parent)
+    })
+
+    let log = `Connecting ${name} to parent`
     if (parents.length > 1) {
       log += 's'
     }
-    log += ` ${parents.map(p => {
-      if (p.fname || p.lname) {
-        return [p.fname || null, p.lname || null].join(' ')
-      }
-
-      return GENEALOGIT_FALLBACK_NAME
-    }).join(', ')}`
+    log += ` ${parentNames.join(', ')}`
 
     this.log(log)
     execSync(`${this.binDir}/connect ${individualBranch} ${parentBranches}`)

@@ -25,18 +25,18 @@ USAGE
 <!-- usagestop -->
 ## Commands
 <!-- commands -->
-* [`genealogit build <FILE>`](#genealogit-build-file)
+* [`genealogit build <FILE> [--format=(gedcom|json|yaml)`](#genealogit-build-file)
 * [`genealogit help <COMMAND>`](#genealogit-help-command)
 * [`genealogit relationship <FILE>`](#genealogit-relationship-file)
 * [`genealogit visualize <FILE> [<ELDER> <YOUNGER>]`](#genealogit-visualize-file-elder-younger)
 
-### `genealogit build <FILE>`
+### `genealogit build <FILE> [--format=(gedcom|json|yaml)`
 
-Build a family tree in Git from a GEDCOM file
+Build a family tree in Git from a GEDCOM, JSON, or YAML file (default GEDCOM).
 
 ```
 USAGE
-  $ genealogit build <FILE>
+  $ genealogit build <FILE> [--format=(gedcom|json|yaml)
 ```
 
 _See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/build.ts)_
