@@ -25,29 +25,29 @@ USAGE
 <!-- usagestop -->
 ## Commands
 <!-- commands -->
-* [`genealogit build [FILE]`](#genealogit-build-file)
-* [`genealogit help [COMMAND]`](#genealogit-help-command)
-* [`genealogit relationship [FILE]`](#genealogit-relationship-file)
-* [`genealogit visualize [FILE] [ELDER] [YOUNGER]`](#genealogit-visualize-file-elder-younger)
+* [`genealogit build <FILE>`](#genealogit-build-file)
+* [`genealogit help <COMMAND>`](#genealogit-help-command)
+* [`genealogit relationship <FILE>`](#genealogit-relationship-file)
+* [`genealogit visualize <FILE> [<ELDER> <YOUNGER>]`](#genealogit-visualize-file-elder-younger)
 
-### `genealogit build [FILE]`
+### `genealogit build <FILE>`
 
 Build a family tree in Git from a GEDCOM file
 
 ```
 USAGE
-  $ genealogit build [FILE]
+  $ genealogit build <FILE>
 ```
 
 _See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/build.ts)_
 
-### `genealogit help [COMMAND]`
+### `genealogit help <COMMAND>`
 
 display help for genealogit
 
 ```
 USAGE
-  $ genealogit help [COMMAND]
+  $ genealogit help <COMMAND>
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -58,13 +58,13 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
 
-### `genealogit relationship [FILE]`
+### `genealogit relationship <FILE>`
 
 describe the command here
 
 ```
 USAGE
-  $ genealogit relationship [FILE]
+  $ genealogit relationship <FILE>
 
 OPTIONS
   -f, --force
@@ -74,13 +74,13 @@ OPTIONS
 
 _See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/relationship.ts)_
 
-### `genealogit visualize [FILE] [ELDER] [YOUNGER]`
+### `genealogit visualize <FILE> [<ELDER> <YOUNGER>]`
 
 Show the Git log graph for the specified file
 
 ```
 USAGE
-  $ genealogit visualize [FILE] [ELDER] [YOUNGER]
+  $ genealogit visualize <FILE> [<ELDER> <YOUNGER>]
 ```
 
 _See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.0.0/src/commands/visualize.ts)_
