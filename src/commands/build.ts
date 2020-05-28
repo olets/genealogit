@@ -80,7 +80,8 @@ export default class Build extends Command {
   }
 
   path(rootRelativePath = '') {
-    return path.join(this.config.root, rootRelativePath)
+    // return path.join(this.config.root, rootRelativePath)
+    return path.resolve(process.env.INIT_CWD, rootRelativePath)
   }
 
   individualName(individual) {

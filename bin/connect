@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
+child="$1"
+shift
+parents="$@"
+
 # shellcheck disable=SC2086
-git replace --graft $@ &>/dev/null
+git replace --graft $child $parents &>/dev/null
+# git filter-repo --force --refs $child
