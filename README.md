@@ -4,6 +4,8 @@ genealogit
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/olets/genealogit)
 [![NPM version](https://img.shields.io/npm/v/genealogit.svg)](https://npmjs.org/package/genealogit)
 
+> _Heads up that this does not currently work! It's public so that I can test out Homebrew and Snapcraft releases. Stay tuned for an "it works!" update_
+
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
