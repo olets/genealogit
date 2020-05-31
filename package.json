@@ -57,7 +57,12 @@
     "plugins": [
       "@oclif/plugin-autocomplete",
       "@oclif/plugin-help"
-    ]
+    ],
+    "update": {
+      "s3": {
+        "host": "https://github.com/olets/genealogit/dist"
+      }
+    }
   },
   "repository": "olets/genealogit",
   "scripts": {
