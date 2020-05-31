@@ -7,11 +7,88 @@ genealogit
 > _Heads up that this does not currently work! It's public so that I can test out Homebrew and Snapcraft releases. Stay tuned for an "it works!" update_
 
 <!-- toc -->
+* [What's this?](#whats-this)
+* [family.yaml](#familyyaml)
+* [Quickstart](#quickstart)
+* [or](#or)
+* [or](#or-1)
 * [Usage](#usage)
 * [Commands](#commands)
 * [Contributing](#contributing)
 * [License](#license)
 <!-- tocstop -->
+# What's this?
+genealogit uses Git as a family tree modelling and visualization tool.
+
+`genealogit build <file>` reads data from a file and for each person creates a single-commit branch.
+
+`genealogit visualize <file>` shows the `git log --graph` for the branches (must run `genealogit build <file>` first).
+
+`genealogit relationship <file> <individual 1's id> <individual 2's id>` reports the blood relationship between two individuals (must run `genealogit build <file>` first).
+
+`genealogit clean <file>` deletes the branches created by `genealogit build <file>`.
+
+The **data file** can be a `.ged` GEDCOM file, or JSON or YAML. If making your `.json` or `.yaml`, you can follow GEDCOM or take advantage of genealogit's support for the non-standard properties `name` and `parentIds`. For example, a simple YAML could look like
+
+```yaml
+- individuals
+  -
+    id: 1
+    name: child
+    parentIds:
+      - 2
+      - 3
+  -
+    id: 2
+    name: parent_1
+  -
+    id: 3
+    name: parent_2
+```
+
+**Branch names** are
+
+```
+genealogit/<file>/<individual id>
+```
+
+**Commit messages** are
+
+```
+<individual's full name> (<individual's id>)
+
+<individual's full record>
+```
+
+The **commit author** for all commits created by genealogit is `genealogit <genealogit@olets.dev>`.
+
+# Quickstart
+
+Install, with one these:
+
+```shell
+yarn global add genealogit
+npm install -g genealogit
+brew install genealogit
+```
+
+Add autocompletion support
+
+```shell
+genealogit autocomplete
+```
+
+At a minimum, genealogit **requires** that you are in a Git repo with at least one commit. You Git repo can have a lot of other things going on too. The minimum setup is:
+
+```shell
+mkdir my-family-tree
+cd my-family-tree
+git init
+git commit --allow-empty -m "empty"
+```
+
+&nbsp;
+
 # Usage
 <!-- usage -->
 ```sh-session
