@@ -119,12 +119,21 @@ export default class Build extends Command {
     }
 
     this.individuals = data.individuals
-    const individualsWithParents = this.individuals
-      .filter(i => i.parents)
-      .filter(i => {
-        return i.parents.map(p => p.id).filter(id => id).length
-      })
     this.prefix = `genealogit/${file}/`
+
+    // GEDCOM uses `parents`, genealogit custom simple format supports `parentIds`
+    let individualsWithParents = this.individuals
+      .reduce((acc, cur) => {
+        if (cur.parents) {
+          cur['parentIds'] = cur.parents.map(p => p.id)
+        }
+
+        return [
+          ...acc,
+          cur,
+        ]
+      }, [])
+      .filter(i => i.parentIds ? i.parentIds.length : null)
 
     cli.action.start('Cleaning')
     this.clean()
@@ -190,14 +199,14 @@ export default class Build extends Command {
   connectToParents(individual) {
     const individualBranch = `${this.prefix}${individual.id}`
     const name = this.individualName(individual)
-    const parentBranches = individual.parents.map(p => `${this.prefix}${p.id}`).join(' ')
-    const parentNames = individual.parents.map(p => {
-      const parent = this.individuals.filter(i => i.id === p.id)[0]
+    const parentBranches = individual.parentIds.map(id => `${this.prefix}${id}`).join(' ')
+    const parentNames = individual.parentIds.map(id => {
+      const parent = this.individuals.filter(i => i.id === id)[0]
       return this.individualName(parent)
     })
 
     let log = `Connecting ${name} to parent`
-    if (individual.parents.length > 1) {
+    if (individual.parentIds.length > 1) {
       log += 's'
     }
     log += ` ${parentNames.join(', ')}`
