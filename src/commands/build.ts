@@ -27,12 +27,10 @@ export default class Build extends Command {
   async run() {
     const {args, flags} = this.parse(Build)
     this.binDir = join(this.config.root, '/bin')
-    this.log(this.binDir)
     this.format = flags.format
 
     if (args.file) {
-      const f = this.projectPath(args.file)
-      this.build(f)
+      this.build(args.file)
     } else {
       const files = await this.files()
 
@@ -73,17 +71,22 @@ export default class Build extends Command {
 
   build(file) {
     let data
+    const filePath = this.projectPath(file)
 
-    if (this.format === 'gedcom') {
-      data = gedcom.parse(fs.readFileSync(file, 'utf8'))
-    } else if (this.format === 'json') {
-      data = JSON.parse(fs.readFileSync(file, 'utf8'))
-    } else if (this.format === 'yaml') {
-      data = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
+    switch(this.format) {
+      case 'gedcom':
+        data = gedcom.parse(fs.readFileSync(filePath, 'utf8'))
+        break
+      case 'json':
+        data = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+        break
+      case 'yaml':
+        data = yaml.safeLoad(fs.readFileSync(filePath, 'utf8'))
+        break
     }
 
     this.individuals = data.individuals
-    this.prefix = `genealogit/${parse(file).name}/`
+    this.prefix = `genealogit/${file}/`
 
     this.clean()
     this.individuals.forEach(i => this.create(i))
