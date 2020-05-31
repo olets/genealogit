@@ -30,6 +30,7 @@ USAGE
 <!-- commands -->
 * [`genealogit autocomplete [SHELL]`](#genealogit-autocomplete-shell)
 * [`genealogit build [FILE]`](#genealogit-build-file)
+* [`genealogit clean [FILE]`](#genealogit-clean-file)
 * [`genealogit help [COMMAND]`](#genealogit-help-command)
 * [`genealogit relationship [FILE] [IND1] [IND2]`](#genealogit-relationship-file-ind1-ind2)
 * [`genealogit visualize [FILE]`](#genealogit-visualize-file)
@@ -70,6 +71,22 @@ OPTIONS
 ```
 
 _See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.0.1/src/commands/build.ts)_
+
+## `genealogit clean [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ genealogit clean [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/clean.ts](https://github.com/olets/genealogit/blob/v1.0.1/src/commands/clean.ts)_
 
 ## `genealogit help [COMMAND]`
 
