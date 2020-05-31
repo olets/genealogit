@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import gedcom from 'gedcom-js'
 import {join, parse, resolve} from 'path'
 import * as yaml from 'js-yaml'
+import cli from 'cli-ux'
 
 const GENEALOGIT_FALLBACK_NAME = '(name unknown)'
 
@@ -14,19 +15,34 @@ export default class Build extends Command {
     format: flags.string({
       default: 'gedcom',
     }),
+    verbose: flags.boolean({
+      char: 'v',
+    }),
   }
 
   static description = 'Build a family tree in Git from a GEDCOM file'
 
+  connectProgress
   binDir
   format
   individuals
   prefix
+  progress
+  verbose
 
   async run() {
     const {args, flags} = this.parse(Build)
     this.binDir = join(this.config.root, '/bin')
     this.format = flags.format
+    this.verbose = flags.verbose
+
+    if (!this.verbose) {
+      this.progress = cli.progress({
+        format: '{bar} {value}/{total}',
+        barCompleteChar: '\u2588',
+        barIncompleteChar: '\u2591',
+      })
+    }
 
     if (!['gedcom', 'json', 'yaml'].includes(this.format)) {
       this.log(`The format ${this.format} is not supported`)
@@ -103,11 +119,35 @@ export default class Build extends Command {
     }
 
     this.individuals = data.individuals
+    const individualsWithParents = this.individuals
+      .filter(i => i.parents)
+      .filter(i => {
+        return i.parents.map(p => p.id).filter(id => id).length
+      })
     this.prefix = `genealogit/${file}/`
 
+    cli.action.start('Cleaning')
     this.clean()
-    this.individuals.forEach(i => this.create(i))
-    this.individuals.forEach(i => this.connectToParents(i))
+    cli.action.stop()
+    this.log()
+
+    if (this.verbose) {
+      this.individuals.forEach(i => this.create(i))
+      individualsWithParents.forEach(i => this.connectToParents(i))
+    } else {
+      this.log('Creating individuals...')
+      this.progress.start(this.individuals.length)
+      this.individuals.forEach(i => this.create(i))
+      this.progress.stop()
+      this.log()
+
+      this.log('Connecting children to their parents...')
+      this.progress.update(0)
+      this.progress.start(individualsWithParents.length)
+      individualsWithParents.forEach(i => this.connectToParents(i))
+      this.progress.stop()
+      this.log()
+    }
   }
 
   individualName(individual) {
@@ -135,34 +175,42 @@ export default class Build extends Command {
 
     const name = this.individualName(individual)
 
-    this.log(`Adding ${name}`)
+    if (this.verbose) {
+      this.log(`Adding ${name}`)
+    }
+
     execSync(`${this.binDir}/create "${name}" ${id} ${this.prefix} "${commitMessage}"`)
     spawnSync(`${this.binDir}/create "${name}" ${id} ${this.prefix} "${commitMessage}"`)
+
+    if (!this.verbose) {
+      this.progress.increment()
+    }
   }
 
   connectToParents(individual) {
-    const parents = individual.parents ? individual.parents.filter(p => p.id) : null
-
-    if (!parents) {
-      return
-    }
-
     const individualBranch = `${this.prefix}${individual.id}`
     const name = this.individualName(individual)
-    const parentBranches = parents.map(p => `${this.prefix}${p.id}`).join(' ')
-    const parentNames = parents.map(p => {
+    const parentBranches = individual.parents.map(p => `${this.prefix}${p.id}`).join(' ')
+    const parentNames = individual.parents.map(p => {
       const parent = this.individuals.filter(i => i.id === p.id)[0]
       return this.individualName(parent)
     })
 
     let log = `Connecting ${name} to parent`
-    if (parents.length > 1) {
+    if (individual.parents.length > 1) {
       log += 's'
     }
     log += ` ${parentNames.join(', ')}`
 
-    this.log(log)
+    if (this.verbose) {
+      this.log(log)
+    }
+
     execSync(`${this.binDir}/connect ${individualBranch} ${parentBranches}`)
     spawnSync(`${this.binDir}/connect ${individualBranch} ${parentBranches}`)
+
+    if (!this.verbose) {
+      this.progress.increment()
+    }
   }
 }

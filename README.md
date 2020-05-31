@@ -67,6 +67,7 @@ USAGE
   $ genealogit build [FILE]
 
 OPTIONS
+  -v, --verbose
   --format=format  [default: gedcom]
 ```
 
@@ -74,16 +75,14 @@ _See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.0
 
 ## `genealogit clean [FILE]`
 
-describe the command here
+Delete a tree created by `build`
 
 ```
 USAGE
   $ genealogit clean [FILE]
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  --format=format  [default: gedcom]
 ```
 
 _See code: [src/commands/clean.ts](https://github.com/olets/genealogit/blob/v1.0.1/src/commands/clean.ts)_
