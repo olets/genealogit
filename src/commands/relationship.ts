@@ -1,6 +1,6 @@
 import {Command} from '@oclif/command'
 import {exec} from 'child_process'
-import * as path from 'path'
+import {join} from 'path'
 
 export default class Relationship extends Command {
   static description = 'Show the relationship between two individuals'
@@ -19,7 +19,7 @@ export default class Relationship extends Command {
       return
     }
 
-    const command = `${this.path('bin')}/relationship "${argv.join('" "')}"`
+    const command = `${join(this.config.root, '/bin/relationship')} "${argv.join('" "')}"`
 
     exec(command, (err, stdout, stderr) => {
       if (stdout) {
@@ -30,9 +30,5 @@ export default class Relationship extends Command {
         this.log(JSON.stringify(err))
       }
     })
-  }
-
-  path(rootRelativePath = '') {
-    return path.join(this.config.root, rootRelativePath)
   }
 }

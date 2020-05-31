@@ -2,7 +2,7 @@ import {Command, flags} from '@oclif/command'
 import {execSync, spawnSync} from 'child_process'
 import * as fs from 'fs'
 import gedcom from 'gedcom-js'
-import * as path from 'path'
+import {join, parse, resolve} from 'path'
 import * as yaml from 'js-yaml'
 
 const GENEALOGIT_FALLBACK_NAME = '(name unknown)'
@@ -26,13 +26,17 @@ export default class Build extends Command {
 
   async run() {
     const {args, flags} = this.parse(Build)
-    this.binDir = this.path('/bin')
+    this.binDir = join(this.config.root, '/bin')
+    this.log(this.binDir)
     this.format = flags.format
 
     if (args.file) {
-      this.build(this.path(args.file))
+      const f = this.projectPath(args.file)
+      this.build(f)
     } else {
-      this.files.forEach(f => {
+      const files = await this.files()
+
+      files.forEach(f => {
         let underline = ''
         for (let i = 0; i < f.length; i++) {
           underline += '-'
@@ -46,10 +50,10 @@ export default class Build extends Command {
     }
   }
 
-  get files() {
+  async files() {
     let files = []
 
-    fs.readdirSync(this.path()).forEach(child => {
+    fs.readdirSync(this.projectPath()).forEach(child => {
       const isGed = child.match(GENEALOGIT_GEDCOM_REGEX)
 
       if (isGed) {
@@ -58,6 +62,13 @@ export default class Build extends Command {
     })
 
     return files
+  }
+
+  projectPath(path: string = '') {
+    // INIT_CWD is available if package is installed. PWD fallback for during development
+    const root = process.env.INIT_CWD || process.env.PWD
+
+    return resolve(root, path)
   }
 
   build(file) {
@@ -72,20 +83,14 @@ export default class Build extends Command {
     }
 
     this.individuals = data.individuals
-    this.prefix = `genealogit/${path.parse(file).name}/`
+    this.prefix = `genealogit/${parse(file).name}/`
 
     this.clean()
     this.individuals.forEach(i => this.create(i))
     this.individuals.forEach(i => this.connectToParents(i))
   }
 
-  path(rootRelativePath = '') {
-    // return path.join(this.config.root, rootRelativePath)
-    return path.resolve(process.env.INIT_CWD, rootRelativePath)
-  }
-
   individualName(individual) {
-    // console.log(individual)
     return individual.name || Object.values(individual.names[0]).concat().join(' ') || GENEALOGIT_FALLBACK_NAME
   }
 

@@ -1,6 +1,6 @@
 import {Command} from '@oclif/command'
 import {exec} from 'child_process'
-import * as path from 'path'
+import {join} from 'path'
 
 export default class Visualize extends Command {
   static description = 'Show the Git log graph for the specified file'
@@ -17,7 +17,7 @@ export default class Visualize extends Command {
       return
     }
 
-    exec(`${this.path('bin')}/visualize "genealogit/${args.file}"`, (err, stdout, stderr) => {
+    exec(`${join(this.config.root, '/bin/visualize')} "genealogit/${args.file}"`, (err, stdout, stderr) => {
       if (stdout) {
         this.log(stdout)
       } else if (stderr) {
@@ -26,9 +26,5 @@ export default class Visualize extends Command {
         this.log(JSON.stringify(err))
       }
     })
-  }
-
-  path(rootRelativePath = '') {
-    return path.join(this.config.root, rootRelativePath)
   }
 }
