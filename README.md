@@ -28,10 +28,34 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`genealogit autocomplete [SHELL]`](#genealogit-autocomplete-shell)
 * [`genealogit build [FILE]`](#genealogit-build-file)
 * [`genealogit help [COMMAND]`](#genealogit-help-command)
 * [`genealogit relationship [FILE] [IND1] [IND2]`](#genealogit-relationship-file-ind1-ind2)
 * [`genealogit visualize [FILE]`](#genealogit-visualize-file)
+
+## `genealogit autocomplete [SHELL]`
+
+display autocomplete installation instructions
+
+```
+USAGE
+  $ genealogit autocomplete [SHELL]
+
+ARGUMENTS
+  SHELL  shell type
+
+OPTIONS
+  -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+EXAMPLES
+  $ genealogit autocomplete
+  $ genealogit autocomplete bash
+  $ genealogit autocomplete zsh
+  $ genealogit autocomplete --refresh-cache
+```
+
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.2.0/src/commands/autocomplete/index.ts)_
 
 ## `genealogit build [FILE]`
 
