@@ -6,7 +6,6 @@ import {join, parse, resolve} from 'path'
 import * as yaml from 'js-yaml'
 
 const GENEALOGIT_FALLBACK_NAME = '(name unknown)'
-const GENEALOGIT_GEDCOM_REGEX = /\.ged$/
 
 export default class Build extends Command {
   static args = [{name: 'file'}]
@@ -50,9 +49,22 @@ export default class Build extends Command {
 
   async files() {
     let files = []
+    let regex
+
+    switch(this.format) {
+      case 'gedcom':
+        regex = /\.ged$/
+        break
+      case 'json':
+        regex = /\.json$/
+        break
+      case 'yaml':
+        regex = /\.yaml$/
+        break
+    }
 
     fs.readdirSync(this.projectPath()).forEach(child => {
-      const isGed = child.match(GENEALOGIT_GEDCOM_REGEX)
+      const isGed = child.match(regex)
 
       if (isGed) {
         files = [...files, child]
