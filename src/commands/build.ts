@@ -28,6 +28,11 @@ export default class Build extends Command {
     this.binDir = join(this.config.root, '/bin')
     this.format = flags.format
 
+    if (!['gedcom', 'json', 'yaml'].includes(this.format)) {
+      this.log(`The format ${this.format} is not supported`)
+      return
+    }
+
     if (args.file) {
       this.build(args.file)
     } else {
