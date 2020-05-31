@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 file="$1"
-ind1="$2"
-ind2="$3"
+ind1_id="$2"
+ind2_id="$3"
 
 prefix="genealogit/$file/"
-ind1_branch="$prefix$ind1"
-ind2_branch="$prefix$ind2"
+ind1_branch="$prefix$ind1_id"
+ind2_branch="$prefix$ind2_id"
 
 max_commit_count() {
   {
@@ -31,15 +31,29 @@ max_commit_count() {
   }
 }
 
+verify_branch() {
+  git show-ref --verify --quiet refs/heads/$1
+}
+
+if ! verify_branch $ind1_branch; then
+  echo "No individual with id $ind1_id found"
+  exit
+fi
+
+if ! verify_branch $ind2_branch; then
+  echo "No individual with id $ind2_id found"
+  exit
+fi
+
 common_ancestor=$(git merge-base "$ind1_branch" "$ind2_branch")
 
 if [[ -z "$common_ancestor" ]]; then
-  echo "$1 and $2 have no common ancestor" >&2
+  echo "$ind1_id and $ind2_id have no common ancestor" >&2
   exit
 fi
 
 echo "Relationship determination is experimental."
-echo "The result is especially likely to be incorrect if one or both or $ind1 and $ind2 do not have parents in the tree."
+echo "The result is especially likely to be incorrect if one or both or $ind1_id and $ind2_id do not have parents in the tree."
 echo
 
 distance1=$(max_commit_count "$ind1_branch" "$common_ancestor")
@@ -65,14 +79,14 @@ distance2=$(max_commit_count "$ind2_branch" "$common_ancestor")
 # git --no-replace-objects rev-list --count --no-merges "$common_ancestor".."$ind2_branch"
 # echo ---
 if (( distance1 > distance2 )); then
-  shorter="$ind2"
+  shorter="$ind2_id"
   shorter_distance=$distance2
-  longer="$ind1"
+  longer="$ind1_id"
   longer_distance=$distance1
 else
-  shorter="$ind1"
+  shorter="$ind1_id"
   shorter_distance=$distance1
-  longer="$ind2"
+  longer="$ind2_id"
   longer_distance=$distance2
 fi
 
