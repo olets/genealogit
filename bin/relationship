@@ -35,6 +35,10 @@ verify_branch() {
   git show-ref --verify --quiet refs/heads/$1
 }
 
+ind_name() {
+  git log -1 --pretty=%s $1
+}
+
 if ! verify_branch $ind1_branch; then
   echo "No individual with id $ind1_id found"
   exit
@@ -79,14 +83,14 @@ distance2=$(max_commit_count "$ind2_branch" "$common_ancestor")
 # git --no-replace-objects rev-list --count --no-merges "$common_ancestor".."$ind2_branch"
 # echo ---
 if (( distance1 > distance2 )); then
-  shorter="$ind2_id"
+  shorter=$(ind_name "$ind2_branch")
   shorter_distance=$distance2
-  longer="$ind1_id"
+  longer=$(ind_name "$ind1_branch")
   longer_distance=$distance1
 else
-  shorter="$ind1_id"
+  shorter=$(ind_name "$ind1_branch")
   shorter_distance=$distance1
-  longer="$ind2_id"
+  longer=$(ind_name "$ind2_branch")
   longer_distance=$distance2
 fi
 
