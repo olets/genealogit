@@ -11,7 +11,7 @@ ind2_branch="$prefix$ind2"
 max_commit_count() {
   {
     function commit_count() {
-      git rev-list --count --merges "$1".."$2"
+      git rev-list --count --no-merges "$1".."$2"
 
       # to get `windsor I5 I6` to work… but breaks others
       # i=0
@@ -38,12 +38,32 @@ if [[ -z "$common_ancestor" ]]; then
   exit
 fi
 
-echo "Warning: Relationship is experimental"
+echo "Relationship determination is experimental."
+echo "The result is especially likely to be incorrect if one or both or $ind1 and $ind2 do not have parents in the tree."
 echo
 
 distance1=$(max_commit_count "$ind1_branch" "$common_ancestor")
 distance2=$(max_commit_count "$ind2_branch" "$common_ancestor")
 
+# git rev-list --count --merges "$ind1_branch".."$common_ancestor"
+# git rev-list --count --merges "$common_ancestor".."$ind1_branch" # 1 13, 1 14
+# git rev-list --count --no-merges "$ind1_branch".."$common_ancestor"
+# git rev-list --count --no-merges "$common_ancestor".."$ind1_branch" # 1 13, 1 14
+# git --no-replace-objects rev-list --count --merges "$ind1_branch".."$common_ancestor"
+# git --no-replace-objects rev-list --count --merges "$common_ancestor".."$ind1_branch"
+# git --no-replace-objects rev-list --count --no-merges "$ind1_branch".."$common_ancestor"
+# git --no-replace-objects rev-list --count --no-merges "$common_ancestor".."$ind1_branch"
+# echo ---
+
+# git rev-list --count --merges "$ind2_branch".."$common_ancestor"
+# git rev-list --count --merges "$common_ancestor".."$ind2_branch" # 1 13
+# git rev-list --count --no-merges "$ind2_branch".."$common_ancestor"
+# git rev-list --count --no-merges "$common_ancestor".."$ind2_branch" # 9 14, # 1 14
+# git --no-replace-objects rev-list --count --merges "$ind2_branch".."$common_ancestor"
+# git --no-replace-objects rev-list --count --merges "$common_ancestor".."$ind2_branch"
+# git --no-replace-objects rev-list --count --no-merges "$ind2_branch".."$common_ancestor"
+# git --no-replace-objects rev-list --count --no-merges "$common_ancestor".."$ind2_branch"
+# echo ---
 if (( distance1 > distance2 )); then
   shorter="$ind2"
   shorter_distance=$distance2
@@ -66,7 +86,7 @@ fi
 # echo "longer_distance $longer_distance"
 
 if [[ $longer_distance == "$shorter_distance" && $longer_distance == 1 ]]; then
-  echo "$shorter is the sibling of $longer"
+  echo "$shorter and $longer are siblings"
   exit
 fi
 
@@ -76,7 +96,7 @@ if [[ $shorter_distance == 0 ]]; then
     exit
   fi
 
-  great_count=$(( longer_distance - 3 ))
+  great_count=$(( longer_distance - 2 ))
   result="$shorter is $longer's "
 
   i=0
