@@ -136,7 +136,6 @@ if [[ $shorter_distance == 1 ]]; then
   while (( i < great_count )); do
     result+="great-"
     i=$(( i + 1 ))
-    echo $i
   done
 
   result+="aunt/uncle"
