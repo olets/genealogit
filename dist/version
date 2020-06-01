@@ -1,0 +1,13 @@
+{
+  "version": "1.1.0",
+  "baseDir": "genealogit",
+  "channel": "stable",
+  "gz": "https://github.com/olets/genealogit/dist/genealogit-v1.1.0/genealogit-v1.1.0.tar.gz",
+  "xz": "https://github.com/olets/genealogit/dist/genealogit-v1.1.0/genealogit-v1.1.0.tar.xz",
+  "sha256gz": "643d102f72391c3e06c7e0909269a970e9586ba80189ead73aea56c50493b764",
+  "rollout": false,
+  "node": {
+    "compatible": ">=8.0.0",
+    "recommended": "12.16.3"
+  }
+}
