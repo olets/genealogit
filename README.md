@@ -4,7 +4,7 @@ genealogit
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/olets/genealogit)
 [![NPM version](https://img.shields.io/npm/v/genealogit.svg)](https://npmjs.org/package/genealogit)
 
-> _Heads up that this does not currently work! It's public so that I can test out Homebrew and Snapcraft releases. Stay tuned for an "it works!" update_
+> Update since v1: works! GEDCOM and Homebrew to come…
 
 <!-- toc -->
 * [What's this?](#whats-this)
@@ -25,7 +25,7 @@ genealogit uses Git as a family tree modelling and visualization tool.
 
 `genealogit clean <file>` deletes the branches created by `genealogit build <file>`.
 
-The **data file** can be a `.ged` GEDCOM file, or JSON or YAML. If making your `.json` or `.yaml`, you can follow GEDCOM or take advantage of genealogit's support for the non-standard properties `name` and `parentIds`. For example, a simple YAML could look like
+The **data file** can be ~~a `.ged` GEDCOM (.ged) file,~~ (stayed tuned for GEDCOM support) or JSON or YAML. If making your own `.json` or `.yaml`, you can follow GEDCOM or take advantage of genealogit's support for the non-standard properties `name` and `parentIds`. For example, a simple YAML could look like
 
 ```yaml
 - individuals
@@ -66,8 +66,8 @@ Install, with one these:
 ```shell
 yarn global add genealogit
 npm install -g genealogit
-brew install genealogit
 ```
+~~brew install genealogit~~ (stay tuned for Homebrew support)
 
 Add autocompletion support
 
@@ -94,7 +94,7 @@ $ npm install -g genealogit
 $ genealogit COMMAND
 running command...
 $ genealogit (-v|--version|version)
-genealogit/1.1.0 darwin-x64 node-v12.16.3
+genealogit/1.1.0 darwin-x64 node-v13.11.0
 $ genealogit --help [COMMAND]
 USAGE
   $ genealogit COMMAND
