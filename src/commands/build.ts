@@ -5,6 +5,7 @@ import gedcom from 'gedcom-js'
 import {join, parse, resolve} from 'path'
 import * as yaml from 'js-yaml'
 import cli from 'cli-ux'
+import {projectPath} from '../util'
 
 const GENEALOGIT_FALLBACK_NAME = '(name unknown)'
 
@@ -84,7 +85,7 @@ export default class Build extends Command {
         break
     }
 
-    fs.readdirSync(this.projectPath()).forEach(child => {
+    fs.readdirSync(projectPath()).forEach(child => {
       const isGed = child.match(regex)
 
       if (isGed) {
@@ -95,16 +96,9 @@ export default class Build extends Command {
     return files
   }
 
-  projectPath(path: string = '') {
-    // INIT_CWD is available if package is installed. PWD fallback for during development
-    const root = process.env.INIT_CWD || process.env.PWD
-
-    return resolve(root, path)
-  }
-
   build(file) {
     let data
-    const filePath = this.projectPath(file)
+    const filePath = projectPath(file)
 
     switch(this.format) {
       case 'gedcom':
