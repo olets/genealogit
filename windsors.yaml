@@ -1,0 +1,1258 @@
+individuals:
+  - id: I14
+    births:
+      - date: 3 Nov 1961
+    deaths: []
+    gender: M
+    names:
+      - fname: David Albert Charles
+        lname: Armstong-Jones
+    children:
+      - id: I35
+        fname: Charles Patrick Inigo
+        lname: Armstrong-Jones
+      - id: I36
+        fname: Margarita Elizabeth Rose Alleyne
+        lname: Armstong-Jones
+    parents:
+      - id: I13
+        fname: Anthony Charles Robert
+        lname: Armstrong-Jones
+        relation: father
+      - id: I4
+        fname: Margaret Rose
+        lname: Windsor
+        relation: mother
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 8 OCT 1993
+        spouse:
+          id: I34
+          fname: Serena
+          lname: Stanhope
+  - id: I36
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 14 MAY 2002
+    deaths: []
+    gender: F
+    names:
+      - fname: Margarita Elizabeth Rose Alleyne
+        lname: Armstong-Jones
+    children: []
+    parents:
+      - id: I14
+        fname: David Albert Charles
+        lname: Armstong-Jones
+        relation: father
+      - id: I34
+        fname: Serena
+        lname: Stanhope
+        relation: mother
+    weddings: []
+  - id: I13
+    births:
+      - date: 7 Mar 1930
+    deaths:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 19 JAN 2017
+    gender: M
+    names:
+      - fname: Anthony Charles Robert
+        lname: Armstrong-Jones
+    children:
+      - id: I14
+        fname: David Albert Charles
+        lname: Armstong-Jones
+      - id: I15
+        fname: Sarah Frances Elizabeth
+        lname: Armstrong-Jones
+    parents: []
+    weddings:
+      - place:
+          id: P22
+          name: 'Westminster Cathedral, London, England'
+        date: 6 May 1960
+        spouse:
+          id: I4
+          fname: Margaret Rose
+          lname: Windsor
+  - id: I35
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 1 JUL 1999
+    deaths: []
+    gender: M
+    names:
+      - fname: Charles Patrick Inigo
+        lname: Armstrong-Jones
+    children: []
+    parents:
+      - id: I14
+        fname: David Albert Charles
+        lname: Armstong-Jones
+        relation: father
+      - id: I34
+        fname: Serena
+        lname: Stanhope
+        relation: mother
+    weddings: []
+  - id: I15
+    births:
+      - date: 1 May 1964
+    deaths: []
+    gender: F
+    names:
+      - fname: Sarah Frances Elizabeth
+        lname: Armstrong-Jones
+    children:
+      - id: I38
+        fname: Samuel David Benedict
+        lname: Chatto
+      - id: I39
+        fname: Arthur Robert Nathaniel
+        lname: Chatto
+    parents:
+      - id: I13
+        fname: Anthony Charles Robert
+        lname: Armstrong-Jones
+        relation: father
+      - id: I4
+        fname: Margaret Rose
+        lname: Windsor
+        relation: mother
+    weddings:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 14 JUL 1994
+        spouse:
+          id: I37
+          fname: Daniel St. George
+          lname: Chatto
+  - id: I2
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 4 Aug 1900
+    deaths:
+      - place:
+          id: P2
+          name: 'Old Windsor, Berkshire, England'
+        date: 30 MAR 2002
+    gender: F
+    names:
+      - fname: Elizabeth Angela Marguerite
+        lname: Bowes-Lyon
+    children:
+      - id: I3
+        fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+      - id: I4
+        fname: Margaret Rose
+        lname: Windsor
+    parents: []
+    weddings:
+      - date: 26 Apr 1923
+        spouse:
+          id: I1
+          fname: George VI
+          lname: Windsor
+  - id: I25
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 17 JUL 1947
+    deaths: []
+    gender: F
+    names:
+      - fname: Camilla Parker
+        lname: Bowles
+    children: []
+    parents: []
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 9 APR 2005
+        spouse:
+          id: I6
+          fname: Charles Philip Arthur
+          lname: Windsor
+  - id: I43
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 3 MAY 1986
+    deaths: []
+    gender: M
+    names:
+      - fname: Jack Christopher Stamp
+        lname: Brooksbank
+    children: []
+    parents: []
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 12 OCT 2018
+        spouse:
+          id: I19
+          fname: Eugenie Victoria Helena
+          lname: Windsor
+  - id: I39
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 5 FEB 1999
+    deaths: []
+    gender: M
+    names:
+      - fname: Arthur Robert Nathaniel
+        lname: Chatto
+    children: []
+    parents:
+      - id: I37
+        fname: Daniel St. George
+        lname: Chatto
+        relation: father
+      - id: I15
+        fname: Sarah Frances Elizabeth
+        lname: Armstrong-Jones
+        relation: mother
+    weddings: []
+  - id: I37
+    births:
+      - date: 22 APR 1957
+    deaths: []
+    gender: M
+    names:
+      - fname: Daniel St. George
+        lname: Chatto
+    children:
+      - id: I38
+        fname: Samuel David Benedict
+        lname: Chatto
+      - id: I39
+        fname: Arthur Robert Nathaniel
+        lname: Chatto
+    parents: []
+    weddings:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 14 JUL 1994
+        spouse:
+          id: I15
+          fname: Sarah Frances Elizabeth
+          lname: Armstrong-Jones
+  - id: I38
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 28 JUL 1996
+    deaths: []
+    gender: M
+    names:
+      - fname: Samuel David Benedict
+        lname: Chatto
+    children: []
+    parents:
+      - id: I37
+        fname: Daniel St. George
+        lname: Chatto
+        relation: father
+      - id: I15
+        fname: Sarah Frances Elizabeth
+        lname: Armstrong-Jones
+        relation: mother
+    weddings: []
+  - id: I16
+    births:
+      - place:
+          id: P4
+          name: 'Marylebone, London, England'
+        date: 15 Oct 1959
+    deaths: []
+    gender: F
+    names:
+      - fname: Sarah Margaret
+        lname: Ferguson
+    children:
+      - id: I18
+        fname: Beatrice Elizabeth Mary
+        lname: Windsor
+      - id: I19
+        fname: Eugenie Victoria Helena
+        lname: Windsor
+    parents: []
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 23 Jul 1986
+        spouse:
+          id: I8
+          fname: Andrew Albert Christian
+          lname: Windsor
+  - id: I28
+    births: []
+    deaths: []
+    gender: F
+    names:
+      - fname: Autumn
+        lname: Kelly
+    children:
+      - id: I29
+        fname: Savannah
+        lname: Phillips
+      - id: I32
+        fname: Isla Elizabeth
+        lname: Phillips
+    parents: []
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 17 MAY 2008
+        spouse:
+          id: I20
+          fname: Peter Mark Andrew
+          lname: Phillips
+  - id: I23
+    births:
+      - place:
+          id: P5
+          name: 'Camberwell, Southwark, London, England'
+        date: 1 MAR 1955
+    deaths: []
+    gender: M
+    names:
+      - fname: Timothy
+        lname: Laurence
+    children: []
+    parents: []
+    weddings:
+      - place:
+          id: P23
+          name: 'Crathie, Aberdeenshire, Grampian, Scotland'
+        date: 12 DEC 1992
+        spouse:
+          id: I7
+          fname: Anne Elizabeth Alice
+          lname: Windsor
+  - id: I42
+    births:
+      - place:
+          id: P6
+          name: 'Los Angeles, Los Angeles, California, United States'
+        date: 4 AUG 1981
+    deaths: []
+    gender: F
+    names:
+      - fname: Rachel Meghan
+        lname: Markle
+    children:
+      - id: I44
+        fname: Archie Harrison Windsor
+        lname: Windsor
+    parents: []
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 19 MAY 2018
+        spouse:
+          id: I12
+          fname: Henry Charles Albert
+          lname: Windsor
+  - id: I26
+    births:
+      - place:
+          id: P7
+          name: 'Reading, Berkshire, England'
+        date: 9 JAN 1982
+    deaths: []
+    gender: F
+    names:
+      - fname: Catherine Elizabeth
+        lname: Middleton
+    children:
+      - id: I31
+        fname: George Alexander Louis
+        lname: Windsor
+      - id: I40
+        fname: Charlotte Elizabeth Diana
+        lname: Windsor
+      - id: I41
+        fname: Louis Arthur Charles
+        lname: Windsor
+    parents: []
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 29 APR 2011
+        spouse:
+          id: I11
+          fname: William Arthur Philip
+          lname: Windsor
+  - id: I30
+    births:
+      - place:
+          id: P8
+          name: 'Frimley, Surrey, England'
+        date: 17 DEC 2007
+    deaths: []
+    gender: M
+    names:
+      - fname: James Alexander Philip Theo
+        lname: Mountbatten-Windsor
+    children: []
+    parents:
+      - id: I9
+        fname: Edward Antony Richard
+        lname: Windsor
+        relation: father
+      - id: I22
+        fname: Sophie
+        lname: Rhys-Jones
+        relation: mother
+    weddings: []
+  - id: I24
+    births:
+      - place:
+          id: P8
+          name: 'Frimley, Surrey, England'
+        date: 8 NOV 2003
+    deaths: []
+    gender: M
+    names:
+      - fname: Louise Alice Elizabeth Mary
+        lname: Mountbatten-Windsor
+    children: []
+    parents:
+      - id: I9
+        fname: Edward Antony Richard
+        lname: Windsor
+        relation: father
+      - id: I22
+        fname: Sophie
+        lname: Rhys-Jones
+        relation: mother
+    weddings: []
+  - id: I5
+    births:
+      - place:
+          id: P9
+          name: 'Isle of Kerkira, Mon Repos, Corfu, Greece'
+        date: 10 Jun 1921
+    deaths: []
+    gender: M
+    names:
+      - fname: Phillip
+        lname: Mountbatten
+    children:
+      - id: I6
+        fname: Charles Philip Arthur
+        lname: Windsor
+      - id: I7
+        fname: Anne Elizabeth Alice
+        lname: Windsor
+      - id: I8
+        fname: Andrew Albert Christian
+        lname: Windsor
+      - id: I9
+        fname: Edward Antony Richard
+        lname: Windsor
+    parents: []
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 20 Nov 1947
+        spouse:
+          id: I3
+          fname: Elizabeth II Alexandra Mary
+          lname: Windsor
+  - id: I32
+    births:
+      - date: 29 MAR 2012
+    deaths: []
+    gender: F
+    names:
+      - fname: Isla Elizabeth
+        lname: Phillips
+    children: []
+    parents:
+      - id: I20
+        fname: Peter Mark Andrew
+        lname: Phillips
+        relation: father
+      - id: I28
+        fname: Autumn
+        lname: Kelly
+        relation: mother
+    weddings: []
+  - id: I17
+    births:
+      - place:
+          id: P10
+          name: 'Tetbury, Cotswold District, Gloucestershire, England'
+        date: 22 Sep 1948
+    deaths: []
+    gender: M
+    names:
+      - fname: Mark Anthony Peter
+        lname: Phillips
+    children:
+      - id: I20
+        fname: Peter Mark Andrew
+        lname: Phillips
+      - id: I21
+        fname: Zara Anne Elizabeth
+        lname: Phillips
+    parents: []
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 14 Nov 1973
+        spouse:
+          id: I7
+          fname: Anne Elizabeth Alice
+          lname: Windsor
+  - id: I20
+    births:
+      - place:
+          id: P11
+          name: 'Paddington, London, England'
+        date: 15 Nov 1977
+    deaths: []
+    gender: M
+    names:
+      - fname: Peter Mark Andrew
+        lname: Phillips
+    children:
+      - id: I29
+        fname: Savannah
+        lname: Phillips
+      - id: I32
+        fname: Isla Elizabeth
+        lname: Phillips
+    parents:
+      - id: I17
+        fname: Mark Anthony Peter
+        lname: Phillips
+        relation: father
+      - id: I7
+        fname: Anne Elizabeth Alice
+        lname: Windsor
+        relation: mother
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 17 MAY 2008
+        spouse:
+          id: I28
+          fname: Autumn
+          lname: Kelly
+  - id: I29
+    births:
+      - place:
+          id: P12
+          name: 'Gloucester, Gloucestershire, England'
+        date: 29 DEC 2010
+    deaths: []
+    gender: F
+    names:
+      - fname: Savannah
+        lname: Phillips
+    children: []
+    parents:
+      - id: I20
+        fname: Peter Mark Andrew
+        lname: Phillips
+        relation: father
+      - id: I28
+        fname: Autumn
+        lname: Kelly
+        relation: mother
+    weddings: []
+  - id: I21
+    births:
+      - place:
+          id: P11
+          name: 'Paddington, London, England'
+        date: 15 May 1981
+    deaths: []
+    gender: F
+    names:
+      - fname: Zara Anne Elizabeth
+        lname: Phillips
+    children:
+      - id: I33
+        fname: Mia Grace
+        lname: Tindall
+      - id: I45
+        fname: Lina Elizabeth
+        lname: Tindall
+    parents:
+      - id: I17
+        fname: Mark Anthony Peter
+        lname: Phillips
+        relation: father
+      - id: I7
+        fname: Anne Elizabeth Alice
+        lname: Windsor
+        relation: mother
+    weddings:
+      - place:
+          id: P24
+          name: 'Edinburgh, Lothian, Scotland'
+        date: 30 JUL 2011
+        spouse:
+          id: I27
+          fname: Mike
+          lname: Tindall
+  - id: I22
+    births:
+      - place:
+          id: P13
+          name: 'Oxford, Oxfordshire, England'
+        date: 20 JAN 1965
+    deaths: []
+    gender: F
+    names:
+      - fname: Sophie
+        lname: Rhys-Jones
+    children:
+      - id: I24
+        fname: Louise Alice Elizabeth Mary
+        lname: Mountbatten-Windsor
+      - id: I30
+        fname: James Alexander Philip Theo
+        lname: Mountbatten-Windsor
+    parents: []
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 19 JUN 1999
+        spouse:
+          id: I9
+          fname: Edward Antony Richard
+          lname: Windsor
+  - id: I10
+    births:
+      - place:
+          id: P14
+          name: 'Sandringham, Norfolk, England'
+        date: 1 Jul 1961
+    deaths:
+      - place:
+          id: P15
+          name: 'Paris, France'
+        date: 31 Aug 1997
+    gender: F
+    names:
+      - fname: Diana Frances
+        lname: Spencer
+    children:
+      - id: I11
+        fname: William Arthur Philip
+        lname: Windsor
+      - id: I12
+        fname: Henry Charles Albert
+        lname: Windsor
+    parents: []
+    weddings:
+      - place:
+          id: P25
+          name: 'St. Paul''s Cathedral, London, England'
+        date: 29 Jul 1981
+        spouse:
+          id: I6
+          fname: Charles Philip Arthur
+          lname: Windsor
+  - id: I34
+    births:
+      - place:
+          id: P16
+          name: 'Limerick, Ireland'
+        date: 1 MAR 1970
+    deaths: []
+    gender: F
+    names:
+      - fname: Serena
+        lname: Stanhope
+    children:
+      - id: I35
+        fname: Charles Patrick Inigo
+        lname: Armstrong-Jones
+      - id: I36
+        fname: Margarita Elizabeth Rose Alleyne
+        lname: Armstong-Jones
+    parents: []
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 8 OCT 1993
+        spouse:
+          id: I14
+          fname: David Albert Charles
+          lname: Armstong-Jones
+  - id: I45
+    births:
+      - place:
+          id: P12
+          name: 'Gloucester, Gloucestershire, England'
+        date: 18 JUN 2018
+    deaths: []
+    gender: F
+    names:
+      - fname: Lina Elizabeth
+        lname: Tindall
+    children: []
+    parents:
+      - id: I27
+        fname: Mike
+        lname: Tindall
+        relation: father
+      - id: I21
+        fname: Zara Anne Elizabeth
+        lname: Phillips
+        relation: mother
+    weddings: []
+  - id: I33
+    births:
+      - place:
+          id: P12
+          name: 'Gloucester, Gloucestershire, England'
+        date: 17 JAN 2014
+    deaths: []
+    gender: F
+    names:
+      - fname: Mia Grace
+        lname: Tindall
+    children: []
+    parents:
+      - id: I27
+        fname: Mike
+        lname: Tindall
+        relation: father
+      - id: I21
+        fname: Zara Anne Elizabeth
+        lname: Phillips
+        relation: mother
+    weddings: []
+  - id: I27
+    births: []
+    deaths: []
+    gender: M
+    names:
+      - fname: Mike
+        lname: Tindall
+    children:
+      - id: I33
+        fname: Mia Grace
+        lname: Tindall
+      - id: I45
+        fname: Lina Elizabeth
+        lname: Tindall
+    parents: []
+    weddings:
+      - place:
+          id: P24
+          name: 'Edinburgh, Lothian, Scotland'
+        date: 30 JUL 2011
+        spouse:
+          id: I21
+          fname: Zara Anne Elizabeth
+          lname: Phillips
+  - id: I8
+    births:
+      - place:
+          id: P17
+          name: 'Buckingham Palace, London, England'
+        date: 16 Feb 1960
+    deaths: []
+    gender: M
+    names:
+      - fname: Andrew Albert Christian
+        lname: Windsor
+    children:
+      - id: I18
+        fname: Beatrice Elizabeth Mary
+        lname: Windsor
+      - id: I19
+        fname: Eugenie Victoria Helena
+        lname: Windsor
+    parents:
+      - id: I5
+        fname: Phillip
+        lname: Mountbatten
+        relation: father
+      - id: I3
+        fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+        relation: mother
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 23 Jul 1986
+        spouse:
+          id: I16
+          fname: Sarah Margaret
+          lname: Ferguson
+  - id: I7
+    births:
+      - place:
+          id: P18
+          name: 'Westminster, London, England'
+        date: 15 Aug 1950
+    deaths: []
+    gender: F
+    names:
+      - fname: Anne Elizabeth Alice
+        lname: Windsor
+    children:
+      - id: I20
+        fname: Peter Mark Andrew
+        lname: Phillips
+      - id: I21
+        fname: Zara Anne Elizabeth
+        lname: Phillips
+    parents:
+      - id: I5
+        fname: Phillip
+        lname: Mountbatten
+        relation: father
+      - id: I3
+        fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+        relation: mother
+    weddings:
+      - &ref_0
+        place:
+          id: P23
+          name: 'Crathie, Aberdeenshire, Grampian, Scotland'
+        date: 12 DEC 1992
+        spouse:
+          id: I23
+          fname: Timothy
+          lname: Laurence
+      - *ref_0
+  - id: I44
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 6 MAY 2019
+    deaths: []
+    gender: M
+    names:
+      - fname: Archie Harrison Windsor
+        lname: Windsor
+    children: []
+    parents:
+      - id: I12
+        fname: Henry Charles Albert
+        lname: Windsor
+        relation: father
+      - id: I42
+        fname: Rachel Meghan
+        lname: Markle
+        relation: mother
+    weddings: []
+  - id: I18
+    births:
+      - place:
+          id: P18
+          name: 'Westminster, London, England'
+        date: 8 Aug 1988
+    deaths: []
+    gender: F
+    names:
+      - fname: Beatrice Elizabeth Mary
+        lname: Windsor
+    children: []
+    parents:
+      - id: I8
+        fname: Andrew Albert Christian
+        lname: Windsor
+        relation: father
+      - id: I16
+        fname: Sarah Margaret
+        lname: Ferguson
+        relation: mother
+    weddings: []
+  - id: I6
+    births:
+      - place:
+          id: P17
+          name: 'Buckingham Palace, London, England'
+        date: 14 NOV 1948
+    deaths: []
+    gender: M
+    names:
+      - fname: Charles Philip Arthur
+        lname: Windsor
+    children:
+      - id: I11
+        fname: William Arthur Philip
+        lname: Windsor
+      - id: I12
+        fname: Henry Charles Albert
+        lname: Windsor
+    parents:
+      - id: I5
+        fname: Phillip
+        lname: Mountbatten
+        relation: father
+      - id: I3
+        fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+        relation: mother
+    weddings:
+      - &ref_1
+        place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 9 APR 2005
+        spouse:
+          id: I25
+          fname: Camilla Parker
+          lname: Bowles
+      - *ref_1
+  - id: I40
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 2 MAY 2015
+    deaths: []
+    gender: F
+    names:
+      - fname: Charlotte Elizabeth Diana
+        lname: Windsor
+    children: []
+    parents:
+      - id: I11
+        fname: William Arthur Philip
+        lname: Windsor
+        relation: father
+      - id: I26
+        fname: Catherine Elizabeth
+        lname: Middleton
+        relation: mother
+    weddings: []
+  - id: I9
+    births:
+      - place:
+          id: P17
+          name: 'Buckingham Palace, London, England'
+        date: 10 Mar 1964
+    deaths: []
+    gender: M
+    names:
+      - fname: Edward Antony Richard
+        lname: Windsor
+    children:
+      - id: I24
+        fname: Louise Alice Elizabeth Mary
+        lname: Mountbatten-Windsor
+      - id: I30
+        fname: James Alexander Philip Theo
+        lname: Mountbatten-Windsor
+    parents:
+      - id: I5
+        fname: Phillip
+        lname: Mountbatten
+        relation: father
+      - id: I3
+        fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+        relation: mother
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 19 JUN 1999
+        spouse:
+          id: I22
+          fname: Sophie
+          lname: Rhys-Jones
+  - id: I3
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 21 Apr 1926
+    deaths: []
+    gender: F
+    names:
+      - fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+    children:
+      - id: I6
+        fname: Charles Philip Arthur
+        lname: Windsor
+      - id: I7
+        fname: Anne Elizabeth Alice
+        lname: Windsor
+      - id: I8
+        fname: Andrew Albert Christian
+        lname: Windsor
+      - id: I9
+        fname: Edward Antony Richard
+        lname: Windsor
+    parents:
+      - id: I1
+        fname: George VI
+        lname: Windsor
+        relation: father
+      - id: I2
+        fname: Elizabeth Angela Marguerite
+        lname: Bowes-Lyon
+        relation: mother
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 20 Nov 1947
+        spouse:
+          id: I5
+          fname: Phillip
+          lname: Mountbatten
+  - id: I19
+    births:
+      - place:
+          id: P18
+          name: 'Westminster, London, England'
+        date: 23 Mar 1990
+    deaths: []
+    gender: F
+    names:
+      - fname: Eugenie Victoria Helena
+        lname: Windsor
+    children: []
+    parents:
+      - id: I8
+        fname: Andrew Albert Christian
+        lname: Windsor
+        relation: father
+      - id: I16
+        fname: Sarah Margaret
+        lname: Ferguson
+        relation: mother
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 12 OCT 2018
+        spouse:
+          id: I43
+          fname: Jack Christopher Stamp
+          lname: Brooksbank
+  - id: I31
+    births:
+      - place:
+          id: P11
+          name: 'Paddington, London, England'
+        date: 22 JUL 2013
+    deaths: []
+    gender: M
+    names:
+      - fname: George Alexander Louis
+        lname: Windsor
+    children: []
+    parents:
+      - id: I11
+        fname: William Arthur Philip
+        lname: Windsor
+        relation: father
+      - id: I26
+        fname: Catherine Elizabeth
+        lname: Middleton
+        relation: mother
+    weddings: []
+  - id: I1
+    births:
+      - place:
+          id: P14
+          name: 'Sandringham, Norfolk, England'
+        date: 14 Dec 1895
+    deaths:
+      - place:
+          id: P14
+          name: 'Sandringham, Norfolk, England'
+        date: 6 Feb 1952
+    gender: M
+    names:
+      - fname: George VI
+        lname: Windsor
+    children:
+      - id: I3
+        fname: Elizabeth II Alexandra Mary
+        lname: Windsor
+      - id: I4
+        fname: Margaret Rose
+        lname: Windsor
+    parents: []
+    weddings:
+      - date: 26 Apr 1923
+        spouse:
+          id: I2
+          fname: Elizabeth Angela Marguerite
+          lname: Bowes-Lyon
+  - id: I12
+    births:
+      - place:
+          id: P11
+          name: 'Paddington, London, England'
+        date: 15 Sep 1984
+    deaths: []
+    gender: M
+    names:
+      - fname: Henry Charles Albert
+        lname: Windsor
+    children:
+      - id: I44
+        fname: Archie Harrison Windsor
+        lname: Windsor
+    parents:
+      - id: I6
+        fname: Charles Philip Arthur
+        lname: Windsor
+        relation: father
+      - id: I10
+        fname: Diana Frances
+        lname: Spencer
+        relation: mother
+    weddings:
+      - place:
+          id: P19
+          name: 'Windsor, Berkshire, England'
+        date: 19 MAY 2018
+        spouse:
+          id: I42
+          fname: Rachel Meghan
+          lname: Markle
+  - id: I41
+    births:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 23 APR 2018
+    deaths: []
+    gender: M
+    names:
+      - fname: Louis Arthur Charles
+        lname: Windsor
+    children: []
+    parents:
+      - id: I11
+        fname: William Arthur Philip
+        lname: Windsor
+        relation: father
+      - id: I26
+        fname: Catherine Elizabeth
+        lname: Middleton
+        relation: mother
+    weddings: []
+  - id: I4
+    births:
+      - place:
+          id: P20
+          name: 'Glamis, Angus, Tayside, Scotland'
+        date: 21 Aug 1930
+    deaths:
+      - place:
+          id: P1
+          name: 'London, England'
+        date: 9 FEB 2002
+    gender: F
+    names:
+      - fname: Margaret Rose
+        lname: Windsor
+    children:
+      - id: I14
+        fname: David Albert Charles
+        lname: Armstong-Jones
+      - id: I15
+        fname: Sarah Frances Elizabeth
+        lname: Armstrong-Jones
+    parents:
+      - id: I1
+        fname: George VI
+        lname: Windsor
+        relation: father
+      - id: I2
+        fname: Elizabeth Angela Marguerite
+        lname: Bowes-Lyon
+        relation: mother
+    weddings:
+      - place:
+          id: P22
+          name: 'Westminster Cathedral, London, England'
+        date: 6 May 1960
+        spouse:
+          id: I13
+          fname: Anthony Charles Robert
+          lname: Armstrong-Jones
+  - id: I11
+    births:
+      - place:
+          id: P11
+          name: 'Paddington, London, England'
+        date: 21 Jun 1982
+    deaths: []
+    gender: M
+    names:
+      - fname: William Arthur Philip
+        lname: Windsor
+    children:
+      - id: I31
+        fname: George Alexander Louis
+        lname: Windsor
+      - id: I40
+        fname: Charlotte Elizabeth Diana
+        lname: Windsor
+      - id: I41
+        fname: Louis Arthur Charles
+        lname: Windsor
+    parents:
+      - id: I6
+        fname: Charles Philip Arthur
+        lname: Windsor
+        relation: father
+      - id: I10
+        fname: Diana Frances
+        lname: Spencer
+        relation: mother
+    weddings:
+      - place:
+          id: P21
+          name: 'Westminster Abbey, London, England'
+        date: 29 APR 2011
+        spouse:
+          id: I26
+          fname: Catherine Elizabeth
+          lname: Middleton
