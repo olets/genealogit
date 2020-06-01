@@ -82,6 +82,7 @@ mkdir my-family-tree
 cd my-family-tree
 git init
 git commit --allow-empty -m "empty"
+[(npx|yarn)] genealogit build --format=yaml my-family-tree.yaml
 ```
 
 &nbsp;
