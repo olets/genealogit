@@ -37,14 +37,6 @@ export default class Build extends Command {
     this.format = flags.format
     this.verbose = flags.verbose
 
-    if (!this.verbose) {
-      this.progress = cli.progress({
-        format: '{bar} {value}/{total}',
-        barCompleteChar: '\u2588',
-        barIncompleteChar: '\u2591',
-      })
-    }
-
     if (!['gedcom', 'json', 'yaml'].includes(this.format)) {
       this.log(`The format ${this.format} is not supported`)
       return
@@ -132,24 +124,24 @@ export default class Build extends Command {
     cli.action.start('Cleaning')
     this.clean()
     cli.action.stop()
-    this.log()
 
     if (this.verbose) {
       this.individuals.forEach(i => this.create(i))
       individualsWithParents.forEach(i => this.connectToParents(i))
     } else {
-      this.log('Creating individuals...')
+      this.progress = cli.progress({
+        format: 'Creating individuals... {value}/{total}',
+      })
       this.progress.start(this.individuals.length)
       this.individuals.forEach(i => this.create(i))
       this.progress.stop()
-      this.log()
 
-      this.log('Connecting children to their parents...')
-      this.progress.update(0)
+      this.progress = cli.progress({
+        format: 'Connecting children to their parents... {value}/{total}',
+      })
       this.progress.start(individualsWithParents.length)
       individualsWithParents.forEach(i => this.connectToParents(i))
       this.progress.stop()
-      this.log()
     }
   }
 
