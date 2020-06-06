@@ -1,0 +1,72 @@
+{
+  "individuals": [
+    {
+      "id": 1,
+      "name": "root",
+      "parentIds": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "name": "parent_1",
+      "parentIds": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": 3,
+      "name": "parent_2",
+      "parentIds": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": 4,
+      "name": "grandparent_1_1"
+    },
+    {
+      "id": 5,
+      "name": "grandparent_1_2"
+    },
+    {
+      "id": 6,
+      "name": "grandparent_2_1"
+    },
+    {
+      "id": 7,
+      "name": "grandparent_2_2"
+    },
+    {
+      "id": 8,
+      "name": "auntuncle_1_1",
+      "parentIds": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": 9,
+      "name": "auntuncle_2_1",
+      "parentIds": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": 10,
+      "name": "auntuncle_1_2"
+    },
+    {
+      "id": 11,
+      "name": "cousin",
+      "parentIds": [
+        8,
+        10
+      ]
+    }
+  ]
+}

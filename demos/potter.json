@@ -1,0 +1,137 @@
+{
+  "individuals": [
+    {
+      "id": "I1",
+      "births": [
+        {
+          "place": {
+            "id": "P1",
+            "name": "Godric's Hollow, England, Great Britain"
+          },
+          "date": "1980-07-31"
+        }
+      ],
+      "deaths": [],
+      "gender": "M",
+      "names": [
+        {
+          "fname": "Harry",
+          "lname": "Potter"
+        }
+      ],
+      "children": [],
+      "parents": [
+        {
+          "id": "I2",
+          "fname": "James",
+          "lname": "Potter",
+          "relation": "father"
+        },
+        {
+          "id": "I3",
+          "fname": "Lily",
+          "lname": "Evans",
+          "relation": "mother"
+        }
+      ],
+      "weddings": []
+    },
+    {
+      "id": "I2",
+      "births": [
+        {
+          "place": {
+            "id": "P2",
+            "name": "England, Great Britain"
+          },
+          "date": "1960-03-27"
+        }
+      ],
+      "deaths": [
+        {
+          "place": {
+            "id": "P1",
+            "name": "Godric's Hollow, England, Great Britain"
+          },
+          "date": "1981-10-31"
+        }
+      ],
+      "gender": "M",
+      "names": [
+        {
+          "fname": "James",
+          "lname": "Potter"
+        }
+      ],
+      "children": [
+        {
+          "id": "I1",
+          "fname": "Harry",
+          "lname": "Potter"
+        }
+      ],
+      "parents": [
+        {}
+      ],
+      "weddings": [
+        {}
+      ]
+    },
+    {
+      "id": "I3",
+      "births": [
+        {
+          "place": {
+            "id": "P3",
+            "name": "Cokeworth, Midlands, England, Great Britain"
+          },
+          "date": "1960-01-30"
+        }
+      ],
+      "deaths": [
+        {
+          "place": {
+            "id": "P1",
+            "name": "Godric's Hollow, England, Great Britain"
+          },
+          "date": "1981-10-31"
+        }
+      ],
+      "gender": "F",
+      "names": [
+        {
+          "fname": "Lily",
+          "lname": "Evans"
+        }
+      ],
+      "children": [
+        {
+          "id": "I1",
+          "fname": "Harry",
+          "lname": "Potter"
+        }
+      ],
+      "parents": [],
+      "weddings": [
+        {}
+      ]
+    }
+  ],
+  "places": [
+    {
+      "id": "P1",
+      "name": "Godric's Hollow, England, Great Britain",
+      "count": 3
+    },
+    {
+      "id": "P2",
+      "name": "England, Great Britain",
+      "count": 1
+    },
+    {
+      "id": "P3",
+      "name": "Cokeworth, Midlands, England, Great Britain",
+      "count": 1
+    }
+  ]
+}
