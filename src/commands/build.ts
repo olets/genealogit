@@ -119,7 +119,7 @@ export default class Build extends Command {
     let individualsWithParents = this.individuals
       .reduce((acc, cur) => {
         if (cur.parents) {
-          cur['parentIds'] = cur.parents.map(p => p.id)
+          cur['parentIds'] = cur.parents.filter(p => p.id).map(p => p.id)
         }
 
         return [
