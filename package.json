@@ -9,7 +9,6 @@
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/plugin-autocomplete": "^0.2.0",
     "@oclif/plugin-help": "^3",
     "@types/js-yaml": "^3.12.4",
     "gedcom-js": "^0.3.0",
@@ -55,7 +54,6 @@
     "commands": "./lib/commands",
     "bin": "genealogit",
     "plugins": [
-      "@oclif/plugin-autocomplete",
       "@oclif/plugin-help"
     ],
     "update": {
