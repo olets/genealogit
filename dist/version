@@ -1,10 +1,10 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.2",
   "baseDir": "genealogit",
   "channel": "stable",
-  "gz": "https://github.com/olets/genealogit/dist/genealogit-v1.2.1/genealogit-v1.2.1.tar.gz",
-  "xz": "https://github.com/olets/genealogit/dist/genealogit-v1.2.1/genealogit-v1.2.1.tar.xz",
-  "sha256gz": "969ca4b223d3587f9cfda6d7bf5bc419e5f277f03b08838bfd86f57d7247564e",
+  "gz": "https://github.com/olets/genealogit/dist/genealogit-v1.2.2/genealogit-v1.2.2.tar.gz",
+  "xz": "https://github.com/olets/genealogit/dist/genealogit-v1.2.2/genealogit-v1.2.2.tar.xz",
+  "sha256gz": "ad0ae97d23bbf7a2e2ae929ef0ce03970f3f1417b24bc0329704847f6f646f58",
   "rollout": false,
   "node": {
     "compatible": ">=8.0.0",
