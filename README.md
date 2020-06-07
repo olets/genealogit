@@ -4,13 +4,12 @@ genealogit
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/olets/genealogit)
 [![NPM version](https://img.shields.io/npm/v/genealogit.svg)](https://npmjs.org/package/genealogit)
 
-> Update since v1: works! GEDCOM and Homebrew to come…
-
 <!-- toc -->
 * [What's this?](#whats-this)
 * [Quickstart](#quickstart)
 * [Usage](#usage)
 * [Commands](#commands)
+* [Acknowledgments](#acknowledgments)
 * [Contributing](#contributing)
 * [License](#license)
 <!-- tocstop -->
@@ -29,17 +28,14 @@ The **data file** can be ~~a `.ged` GEDCOM (.ged) file,~~ (stayed tuned for GEDC
 
 ```yaml
 - individuals
-  -
-    id: 1
+  - id: 1
     name: child
     parentIds:
       - 2
       - 3
-  -
-    id: 2
+  - id: 2
     name: parent_1
-  -
-    id: 3
+  - id: 3
     name: parent_2
 ```
 
@@ -82,8 +78,16 @@ mkdir my-family-tree
 cd my-family-tree
 git init
 git commit --allow-empty -m "empty"
-[(npx|yarn)] genealogit build --format=yaml my-family-tree.yaml
 ```
+
+Add a family tree file to the directory. If you don't have one, download and play with one or all of the files in `demo/` directory. (Or download others for example at <https://webtreeprint.com/tp_famous_gedcoms.php>). The following supposes a GEDCOM file. If the file is YAML, include `--format=yaml` in the `build`. If the file is YAML, include `--format=yaml` in the `build` command.
+
+```shell
+[(npx|yarn)] genealogit build a-family-tree.ged
+[(npx|yarn)] genealogit visualize a-family-tree.ged
+[(npx|yarn)] genealogit relationship a-family-tree.ged <an id> <another id>
+```
+
 
 &nbsp;
 
@@ -94,7 +98,7 @@ $ npm install -g genealogit
 $ genealogit COMMAND
 running command...
 $ genealogit (-v|--version|version)
-genealogit/1.1.0 darwin-x64 node-v13.11.0
+genealogit/1.1.1 darwin-x64 node-v12.16.3
 $ genealogit --help [COMMAND]
 USAGE
   $ genealogit COMMAND
@@ -146,7 +150,7 @@ OPTIONS
   --format=format  [default: gedcom]
 ```
 
-_See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.1.0/src/commands/build.ts)_
+_See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/build.ts)_
 
 ## `genealogit clean [FILE]`
 
@@ -160,7 +164,7 @@ OPTIONS
   --format=format  [default: gedcom]
 ```
 
-_See code: [src/commands/clean.ts](https://github.com/olets/genealogit/blob/v1.1.0/src/commands/clean.ts)_
+_See code: [src/commands/clean.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/clean.ts)_
 
 ## `genealogit help [COMMAND]`
 
@@ -188,7 +192,7 @@ USAGE
   $ genealogit relationship [FILE] [IND1] [IND2]
 ```
 
-_See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.1.0/src/commands/relationship.ts)_
+_See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/relationship.ts)_
 
 ## `genealogit visualize [FILE]`
 
@@ -199,15 +203,22 @@ USAGE
   $ genealogit visualize [FILE]
 ```
 
-_See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.1.0/src/commands/visualize.ts)_
+_See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/visualize.ts)_
 <!-- commandsstop -->
+
+# Acknowledgments
+
+genealogit relies on [gedcom-js](https://github.com/stivaugoin/gedcom-js) to parse GEDCOM. That project is also the source of the `potter.ged` demo file.
+
+You may be interested in the related exploration [GenealogyTreeInGit](https://github.com/KvanTTT/GenealogyTreeInGit), which is written up at <https://habr.com/en/post/465959/>.
+
 # Contributing
 
 Thanks for your interest. Contributions are welcome!
 
 > Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-Check the [Issues](https://github.com/olets/zsh-abbr/issues) to see if your topic has been discussed before or if it is being worked on. You may also want to check the roadmap (see above). Discussing in an Issue before opening a Pull Request means future contributors only have to search in one place.
+Check the [Issues](https://github.com/olets/zsh-abbr/issues) to see if your topic has been discussed before or if it is being worked on. Discussing in an Issue before opening a Pull Request means future contributors only have to search in one place.
 
 This project loosely follows the [Angular commit message conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit).
 
