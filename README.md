@@ -24,7 +24,7 @@ genealogit uses Git as a family tree modelling and visualization tool.
 
 `genealogit clean <file>` deletes the branches created by `genealogit build <file>`.
 
-The **data file** can be ~~a `.ged` GEDCOM (.ged) file,~~ (stayed tuned for GEDCOM support) or JSON or YAML. If making your own `.json` or `.yaml`, you can follow GEDCOM or take advantage of genealogit's support for the non-standard properties `name` and `parentIds`. For example, a simple YAML could look like
+The **data file** can be GEDCOM (.ged), JSON, or YAML. If making your own `.json` or `.yaml`, you can follow GEDCOM or take advantage of genealogit's support for the non-standard properties `name` and `parentIds`. For example, a simple YAML could look like
 
 ```yaml
 - individuals
@@ -63,7 +63,6 @@ Install, with one these:
 yarn global add genealogit
 npm install -g genealogit
 ```
-~~brew install genealogit~~ (stay tuned for Homebrew support)
 
 Add autocompletion support
 
@@ -80,7 +79,7 @@ git init
 git commit --allow-empty -m "empty"
 ```
 
-Add a family tree file to the directory. If you don't have one, download and play with one or all of the files in `demo/` directory. (Or download others for example at <https://webtreeprint.com/tp_famous_gedcoms.php>). The following supposes a GEDCOM file. If the file is YAML, include `--format=yaml` in the `build`. If the file is YAML, include `--format=yaml` in the `build` command.
+Add a family tree file to the directory. If you don't have one, download and play with one or all of the files in `demo/` directory. (Or download others for example at <https://webtreeprint.com/tp_famous_gedcoms.php>). The following supposes a GEDCOM file. If the file is JSON use `build --format=json` in the `build`. If the file is YAML `build --format=yaml`.
 
 ```shell
 [(npx|yarn)] genealogit build a-family-tree.ged
