@@ -98,7 +98,7 @@ $ npm install -g genealogit
 $ genealogit COMMAND
 running command...
 $ genealogit (-v|--version|version)
-genealogit/1.1.1 darwin-x64 node-v12.16.3
+genealogit/1.2.0 darwin-x64 node-v12.16.3
 $ genealogit --help [COMMAND]
 USAGE
   $ genealogit COMMAND
@@ -150,7 +150,7 @@ OPTIONS
   --format=format  [default: gedcom]
 ```
 
-_See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/build.ts)_
+_See code: [src/commands/build.ts](https://github.com/olets/genealogit/blob/v1.2.0/src/commands/build.ts)_
 
 ## `genealogit clean [FILE]`
 
@@ -164,7 +164,7 @@ OPTIONS
   --format=format  [default: gedcom]
 ```
 
-_See code: [src/commands/clean.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/clean.ts)_
+_See code: [src/commands/clean.ts](https://github.com/olets/genealogit/blob/v1.2.0/src/commands/clean.ts)_
 
 ## `genealogit help [COMMAND]`
 
@@ -192,7 +192,7 @@ USAGE
   $ genealogit relationship [FILE] [IND1] [IND2]
 ```
 
-_See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/relationship.ts)_
+_See code: [src/commands/relationship.ts](https://github.com/olets/genealogit/blob/v1.2.0/src/commands/relationship.ts)_
 
 ## `genealogit visualize [FILE]`
 
@@ -203,7 +203,7 @@ USAGE
   $ genealogit visualize [FILE]
 ```
 
-_See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.1.1/src/commands/visualize.ts)_
+_See code: [src/commands/visualize.ts](https://github.com/olets/genealogit/blob/v1.2.0/src/commands/visualize.ts)_
 <!-- commandsstop -->
 
 # Acknowledgments
